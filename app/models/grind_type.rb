@@ -1,0 +1,2 @@
+class GrindType < ApplicationRecord
+end

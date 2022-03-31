@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_03_31_031912) do
+ActiveRecord::Schema[7.0].define(version: 2022_03_31_043225) do
   create_table "grind_types", force: :cascade do |t|
     t.string "grind"
     t.datetime "created_at", null: false
@@ -32,6 +32,16 @@ ActiveRecord::Schema[7.0].define(version: 2022_03_31_031912) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "suppliers", force: :cascade do |t|
+    t.string "company_name"
+    t.string "company_rep"
+    t.string "email"
+    t.integer "job_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["job_id"], name: "index_suppliers_on_job_id"
+  end
+
   create_table "tax_rates", force: :cascade do |t|
     t.float "gst"
     t.float "pst"
@@ -40,4 +50,5 @@ ActiveRecord::Schema[7.0].define(version: 2022_03_31_031912) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "suppliers", "jobs"
 end

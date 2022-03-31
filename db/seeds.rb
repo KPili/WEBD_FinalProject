@@ -5,6 +5,7 @@
 
 # Reset Database
 # FKs
+Inventory.destroy_all
 Supplier.destroy_all
 # PKs
 Job.destroy_all
@@ -20,5 +21,6 @@ GrindType.connection.execute("UPDATE SQLITE_SEQUENCE SET SEQ=0 WHERE NAME= 'grin
 Species.connection.execute("UPDATE SQLITE_SEQUENCE SET SEQ=0 WHERE NAME= 'species'")
 TaxRate.connection.execute("UPDATE SQLITE_SEQUENCE SET SEQ=0 WHERE NAME= 'tax_rates'")
 Supplier.connection.execute("UPDATE SQLITE_SEQUENCE SET SEQ=0 WHERE NAME= 'suppliers'")
+Inventory.connection.execute("UPDATE SQLITE_SEQUENCE SET SEQ=0 WHERE NAME= 'inventories'")
 
 puts "*** Primary Key auto-incrementing value reset to 1 ***"

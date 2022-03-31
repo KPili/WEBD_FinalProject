@@ -7,6 +7,7 @@
 Job.destroy_all
 GrindType.destroy_all
 Species.destroy_all
+TaxRate.destroy_all
 
 puts "*** Table Contents Deleted ***"
 
@@ -14,5 +15,6 @@ puts "*** Table Contents Deleted ***"
 Job.connection.execute("UPDATE SQLITE_SEQUENCE SET SEQ=0 WHERE NAME= 'jobs")
 GrindType.connection.execute("UPDATE SQLITE_SEQUENCE SET SEQ=0 WHERE NAME= 'grind_types")
 Species.connection.execute("UPDATE SQLITE_SEQUENCE SET SEQ=0 WHERE NAME= 'species'")
+TaxRate.connection.execute("UPDATE SQLITE_SEQUENCE SET SEQ=0 WHERE NAME= 'tax_rates'")
 
 puts "*** Primary Key auto-incrementing value reset to 1 ***"

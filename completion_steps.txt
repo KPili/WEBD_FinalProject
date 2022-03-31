@@ -4,3 +4,14 @@ Building models & testing validation
   -> Grind_Type [x]
   -> Species [x]
   -> Tax_Rates [x]
+- Buildin Referencing Models (Table:TableToReference)
+  Set One:
+  -> Supplier: Jobs []
+  -> Inventory: Supplier []
+  -> Inventory_Details: Inventory & Species
+
+  Set Two:
+  -> Employees: Jobs []
+  -> Provinces: Tax_Rates []
+  -> Orders: Empoyees & Grind_Type & Provinces []
+  -> Order_History: Orders []

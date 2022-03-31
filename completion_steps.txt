@@ -7,7 +7,7 @@ Building models & testing validation
 - Buildin Referencing Models (Table:TableToReference)
   Set One:
   -> Supplier: Jobs [x]
-  -> Inventory: Supplier []
+  -> Inventory: Supplier [x]
   -> Inventory_Details: Inventory & Species []
 
   Set Two:

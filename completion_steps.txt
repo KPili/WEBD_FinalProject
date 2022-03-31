@@ -8,7 +8,7 @@ Building models & testing validation
   Set One:
   -> Supplier: Jobs [x]
   -> Inventory: Supplier []
-  -> Inventory_Details: Inventory & Species
+  -> Inventory_Details: Inventory & Species []
 
   Set Two:
   -> Employees: Jobs []

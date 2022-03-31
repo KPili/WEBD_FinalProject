@@ -1,5 +1,6 @@
 class Supplier < ApplicationRecord
   # Association
+  has_many :inventories
   belongs_to :job
 
   # Validation

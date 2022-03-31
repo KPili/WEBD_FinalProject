@@ -1,3 +1,6 @@
-Building models
+Building models & testing validation
 - Building Models that require no references (PKs)
-  -> Jobs, Grind_Type, Species, Tax_Rates
+  -> Jobs [x]
+  -> Grind_Type []
+  -> Species []
+  -> Tax_Rates []

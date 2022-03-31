@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_03_31_024048) do
+ActiveRecord::Schema[7.0].define(version: 2022_03_31_025920) do
   create_table "grind_types", force: :cascade do |t|
     t.string "grind"
     t.datetime "created_at", null: false
@@ -22,6 +22,12 @@ ActiveRecord::Schema[7.0].define(version: 2022_03_31_024048) do
     t.text "job_desc"
     t.date "start_date"
     t.date "end_date"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "species", force: :cascade do |t|
+    t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

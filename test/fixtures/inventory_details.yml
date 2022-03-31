@@ -1,0 +1,19 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  aroma: 1.5
+  flavor: 1.5
+  acidity: 1.5
+  country_of_origin: MyString
+  on_sale: false
+  inventory: one
+  species: one
+
+two:
+  aroma: 1.5
+  flavor: 1.5
+  acidity: 1.5
+  country_of_origin: MyString
+  on_sale: false
+  inventory: two
+  species: two

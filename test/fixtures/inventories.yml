@@ -1,0 +1,21 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  item_name: MyString
+  unit_sold: MyString
+  unit_price: MyString
+  stock_amount: 1
+  new_inventory: false
+  total: 1.5
+  retail_total: 1.5
+  supplier: one
+
+two:
+  item_name: MyString
+  unit_sold: MyString
+  unit_price: MyString
+  stock_amount: 1
+  new_inventory: false
+  total: 1.5
+  retail_total: 1.5
+  supplier: two

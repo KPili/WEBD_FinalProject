@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_03_31_062846) do
+ActiveRecord::Schema[7.0].define(version: 2022_03_31_232253) do
   create_table "grind_types", force: :cascade do |t|
     t.string "grind"
     t.datetime "created_at", null: false
@@ -29,6 +29,20 @@ ActiveRecord::Schema[7.0].define(version: 2022_03_31_062846) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["supplier_id"], name: "index_inventories_on_supplier_id"
+  end
+
+  create_table "inventory_details", force: :cascade do |t|
+    t.float "aroma"
+    t.float "flavor"
+    t.float "acidity"
+    t.string "country_of_origin"
+    t.boolean "on_sale"
+    t.integer "inventory_id", null: false
+    t.integer "species_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["inventory_id"], name: "index_inventory_details_on_inventory_id"
+    t.index ["species_id"], name: "index_inventory_details_on_species_id"
   end
 
   create_table "jobs", force: :cascade do |t|
@@ -65,5 +79,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_03_31_062846) do
   end
 
   add_foreign_key "inventories", "suppliers"
+  add_foreign_key "inventory_details", "inventories"
+  add_foreign_key "inventory_details", "species"
   add_foreign_key "suppliers", "jobs"
 end

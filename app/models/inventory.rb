@@ -1,5 +1,6 @@
 class Inventory < ApplicationRecord
   # Association
+  has_one :inventory_detal
   belongs_to :supplier
 
   # Validation

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_03_31_060255) do
+ActiveRecord::Schema[7.0].define(version: 2022_03_31_062846) do
   create_table "grind_types", force: :cascade do |t|
     t.string "grind"
     t.datetime "created_at", null: false
@@ -19,8 +19,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_03_31_060255) do
 
   create_table "inventories", force: :cascade do |t|
     t.string "item_name"
-    t.string "unit_sold"
-    t.string "unit_price"
+    t.float "unit_sold"
+    t.float "unit_price"
     t.integer "stock_amount"
     t.boolean "new_inventory"
     t.float "total"

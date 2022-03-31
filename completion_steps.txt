@@ -6,7 +6,7 @@ Building models & testing validation
   -> Tax_Rates [x]
 - Buildin Referencing Models (Table:TableToReference)
   Set One:
-  -> Supplier: Jobs []
+  -> Supplier: Jobs [x]
   -> Inventory: Supplier []
   -> Inventory_Details: Inventory & Species
 

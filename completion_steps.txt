@@ -12,6 +12,6 @@ Building models & testing validation
 
   Set Two:
   -> Employees: Jobs [x]
-  -> Provinces: Tax_Rates []
+  -> Provinces: Tax_Rates [x]
   -> Orders: Empoyees & Grind_Type & Provinces []
   -> Order_History: Orders []

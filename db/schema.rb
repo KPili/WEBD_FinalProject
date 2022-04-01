@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_04_01_003301) do
+ActiveRecord::Schema[7.0].define(version: 2022_04_01_012250) do
   create_table "employees", force: :cascade do |t|
     t.string "f_name"
     t.string "l_name"
@@ -65,6 +65,15 @@ ActiveRecord::Schema[7.0].define(version: 2022_04_01_003301) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "provinces", force: :cascade do |t|
+    t.string "province_code"
+    t.string "province_name"
+    t.integer "tax_rate_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["tax_rate_id"], name: "index_provinces_on_tax_rate_id"
+  end
+
   create_table "species", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
@@ -93,5 +102,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_04_01_003301) do
   add_foreign_key "inventories", "suppliers"
   add_foreign_key "inventory_details", "inventories"
   add_foreign_key "inventory_details", "species"
+  add_foreign_key "provinces", "tax_rates"
   add_foreign_key "suppliers", "jobs"
 end

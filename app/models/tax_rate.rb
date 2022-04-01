@@ -3,5 +3,5 @@ class TaxRate < ApplicationRecord
   has_many :provinces
 
   # Validation
-  validates :gst, :pst, :hst, numericality: true, allow_blank: true
+  validates :gst, :pst, :hst, :total, numericality: true, allow_blank: true
 end

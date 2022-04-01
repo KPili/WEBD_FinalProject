@@ -6,6 +6,7 @@ class InventoryDetail < ApplicationRecord
   # Validation
   validates :aroma, :flavor, :acidity, numericality: true, allow_blank: true
   validates :on_sale, numericality: { only_integer: true }
-  validates :aroma, :flavor, :acidity, :on_sale, numericality: { greater_than_or_equal_to: 0 }
+  validates :aroma, :flavor, :acidity, numericality: { greater_than_or_equal_to: 0 },
+                                       allow_blank:  true
   validates :country_of_origin, presence: true
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_04_01_012250) do
+ActiveRecord::Schema[7.0].define(version: 2022_04_01_020936) do
   create_table "employees", force: :cascade do |t|
     t.string "f_name"
     t.string "l_name"
@@ -65,6 +65,20 @@ ActiveRecord::Schema[7.0].define(version: 2022_04_01_012250) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "orders", force: :cascade do |t|
+    t.string "order_num"
+    t.string "email"
+    t.float "cart_total"
+    t.integer "employee_id", null: false
+    t.integer "grind_type_id", null: false
+    t.integer "province_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["employee_id"], name: "index_orders_on_employee_id"
+    t.index ["grind_type_id"], name: "index_orders_on_grind_type_id"
+    t.index ["province_id"], name: "index_orders_on_province_id"
+  end
+
   create_table "provinces", force: :cascade do |t|
     t.string "province_code"
     t.string "province_name"
@@ -102,6 +116,9 @@ ActiveRecord::Schema[7.0].define(version: 2022_04_01_012250) do
   add_foreign_key "inventories", "suppliers"
   add_foreign_key "inventory_details", "inventories"
   add_foreign_key "inventory_details", "species"
+  add_foreign_key "orders", "employees"
+  add_foreign_key "orders", "grind_types"
+  add_foreign_key "orders", "provinces"
   add_foreign_key "provinces", "tax_rates"
   add_foreign_key "suppliers", "jobs"
 end

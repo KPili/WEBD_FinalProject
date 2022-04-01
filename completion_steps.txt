@@ -14,4 +14,4 @@ Building models & testing validation
   -> Employees: Jobs [x]
   -> Provinces: Tax_Rates [x]
   -> Orders: Empoyees & Grind_Type & Provinces [x]
-  -> Order_History: Orders []
+  -> Order_History: Orders [x]

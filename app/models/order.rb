@@ -1,5 +1,6 @@
 class Order < ApplicationRecord
   # Association
+  has_many :order_histories
   belongs_to :employee
   belongs_to :grind_type
   belongs_to :province

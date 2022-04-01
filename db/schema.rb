@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_04_01_020936) do
+ActiveRecord::Schema[7.0].define(version: 2022_04_01_031430) do
   create_table "employees", force: :cascade do |t|
     t.string "f_name"
     t.string "l_name"
@@ -65,6 +65,16 @@ ActiveRecord::Schema[7.0].define(version: 2022_04_01_020936) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "order_histories", force: :cascade do |t|
+    t.date "order_date"
+    t.float "cart_total"
+    t.float "tax_rate"
+    t.integer "order_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["order_id"], name: "index_order_histories_on_order_id"
+  end
+
   create_table "orders", force: :cascade do |t|
     t.string "order_num"
     t.string "email"
@@ -116,6 +126,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_04_01_020936) do
   add_foreign_key "inventories", "suppliers"
   add_foreign_key "inventory_details", "inventories"
   add_foreign_key "inventory_details", "species"
+  add_foreign_key "order_histories", "orders"
   add_foreign_key "orders", "employees"
   add_foreign_key "orders", "grind_types"
   add_foreign_key "orders", "provinces"

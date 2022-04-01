@@ -1,6 +1,6 @@
 class Job < ApplicationRecord
   # Association
-  # has_many :employees
+  has_many :employees
   has_many :suppliers
 
   # Validation

@@ -11,7 +11,7 @@ Building models & testing validation
   -> Inventory_Details: Inventory & Species [x]
 
   Set Two:
-  -> Employees: Jobs []
+  -> Employees: Jobs [x]
   -> Provinces: Tax_Rates []
   -> Orders: Empoyees & Grind_Type & Provinces []
   -> Order_History: Orders []

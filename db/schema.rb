@@ -10,7 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_03_31_232253) do
+ActiveRecord::Schema[7.0].define(version: 2022_04_01_003301) do
+  create_table "employees", force: :cascade do |t|
+    t.string "f_name"
+    t.string "l_name"
+    t.string "phone_num"
+    t.string "email"
+    t.integer "job_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["job_id"], name: "index_employees_on_job_id"
+  end
+
   create_table "grind_types", force: :cascade do |t|
     t.string "grind"
     t.datetime "created_at", null: false
@@ -78,6 +89,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_03_31_232253) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "employees", "jobs"
   add_foreign_key "inventories", "suppliers"
   add_foreign_key "inventory_details", "inventories"
   add_foreign_key "inventory_details", "species"

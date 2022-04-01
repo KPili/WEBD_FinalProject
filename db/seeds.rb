@@ -5,6 +5,7 @@
 
 # Reset Database
 # FKs
+Order.destroy_all
 Province.destroy_all
 Employee.destroy_all
 InventoryDetail.destroy_all
@@ -28,5 +29,6 @@ Inventory.connection.execute("UPDATE SQLITE_SEQUENCE SET SEQ=0 WHERE NAME= 'inve
 InventoryDetail.connection.execute("UPDATE SQLITE_SEQUENCE SET SEQ=0 WHERE NAME= 'inventory_details'")
 Employee.connection.execute("UPDATE SQLITE_SEQUENCE SET SEQ=0 WHERE NAME= 'employees'")
 Province.connection.execute("UPDATE SQLITE_SEQUENCE SET SEQ=0 WHERE NAME= 'provinces'")
+Order.connection.execute("UPDATE SQLITE_SEQUENCE SET SEQ=0 WHERE NAME= 'orders'")
 
 puts "*** Primary Key auto-incrementing value reset to 1 ***"

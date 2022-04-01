@@ -1,6 +1,6 @@
 class Employee < ApplicationRecord
   # Association
-  # has_many :orders
+  has_many :orders
   belongs_to :job
 
   # Validation

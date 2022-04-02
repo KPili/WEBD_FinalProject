@@ -1,0 +1,31 @@
+Project Business Feature
+
+1.6 - Write a seed script to populate your product database with products and associated categories.
+    >>  You must seed at least 100 products across 4 categories. (Faker can be used for this.)
+
+Plan:
+-----
+Four Categories of data (Provinces):
+  * Faker Employee's (1) [https://github.com/faker-ruby/faker]
+  * Coffee CSV [https://github.com/jldbc/coffee-quality-database]
+    * Arabica.csv (2)
+    * Robusta.csv (3)
+  * Provincial Tax Rates (4) [http://api.salestaxapi.ca/v2/province/all]
+
+Notes:
+------
+Faker - Gem for Fake Data Creation
+Coffee API - For Coffee Bean meta data
+Provincial Tax API - For Tax Rate API
+
+*******************************************************************************************************
+1.8 - Extract your seed data for products and categories from an existing dataset or API.
+    >>  Uses at least one CSV or API (not faker)
+
+Plan:
+-----
+CSV & API to be used:
+  * Coffee CSV [https://github.com/jldbc/coffee-quality-database]
+    * Arabica.csv (2)
+    * Robusta.csv (3)
+  * Provincial Tax Rates (4) [http://api.salestaxapi.ca/v2/province/all]

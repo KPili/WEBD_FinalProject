@@ -2,6 +2,7 @@
 # require "net/http"
 # require "uri"
 # require "json"
+require "csv"
 
 # Reset Database
 # FKs
@@ -34,3 +35,40 @@ Order.connection.execute("UPDATE SQLITE_SEQUENCE SET SEQ=0 WHERE NAME= 'orders'"
 OrderHistory.connection.execute("UPDATE SQLITE_SEQUENCE SET SEQ=0 WHERE NAME= 'order_histories'")
 
 puts "*** Primary Key auto-incrementing value reset to 1 ***"
+
+# *** Propogate PK Tables ***
+
+# Jobs
+#   - Manager & Barista must exist: Will use Faker for other job roles
+
+# Grind Types
+#   - Will scrape data and use that with descriptions
+
+# Species
+#   - Will use coffee csv's
+
+# Tax Rates
+#   - Will use API + declare a dictionary/hash-map to use for traversing API
+
+# *** Propogate FK Tables ***
+
+# Suppliers
+#   - Will use Faker
+
+# Inventory
+#   - Will use Faker
+
+# Inventory Details
+#   - Will use coffee API
+
+# Employees
+#   - Will use Faker + Instructor
+
+# Provinces
+#   - Will use dictionary/hashmap
+
+# Orders
+#   - Implement for Shopping Cart Functionality
+
+# Order_History
+#   - Implement AFTER Shopping Cart Functionality

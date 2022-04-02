@@ -12,6 +12,10 @@ Four Categories of data (Provinces):
     * Robusta.csv (3)
   * Provincial Tax Rates (4) [http://api.salestaxapi.ca/v2/province/all]
 
+-- Maybe --
+Scrape data from here for:
+  * Grind Details [https://grosche.ca/coffee-grind-chart/?doing_wp_cron=1648905262.3261001110076904296875]
+
 Notes:
 ------
 Faker - Gem for Fake Data Creation

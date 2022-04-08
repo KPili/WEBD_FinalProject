@@ -5,22 +5,23 @@ Project Business Feature
 
 Plan:
 -----
-Four Categories of data (Provinces):
+Categories of data (Provinces):
   * Faker Employee's (1) [https://github.com/faker-ruby/faker]
   * Coffee CSV [https://github.com/jldbc/coffee-quality-database]
-    * Arabica.csv (2)
-    * Robusta.csv (3)
+    * arabica.csv (2)
+    * robusta.csv (3)
   * Provincial Tax Rates (4) [http://api.salestaxapi.ca/v2/province/all]
-
--- Maybe --
-Scrape data from here for:
-  * Grind Details [https://grosche.ca/coffee-grind-chart/?doing_wp_cron=1648905262.3261001110076904296875]
-
+  * ParseHub - Scraped Data [https://www.parsehub.com/]
+    * Grind Details [https://coffeebros.com/blog/guide-to-coffee-grind-size/]
+      - grinds.csv
+    * Inventory Details [https://www.amazon.ca/s?k=coffee+beans&crid=15KR5OEXKYAU5&sprefix=coffee+beans%2Caps%2C109&ref=nb_sb_noss_1]
+      - brands.csv
 Notes:
 ------
 Faker - Gem for Fake Data Creation
 Coffee API - For Coffee Bean meta data
-Provincial Tax API - For Tax Rate API
+Provincial Tax API - For Tax Rate API, note: API rate limit = 60 calls/minute
+ParseHub - 3rd Party Data Web Scraper
 
 *******************************************************************************************************
 1.8 - Extract your seed data for products and categories from an existing dataset or API.

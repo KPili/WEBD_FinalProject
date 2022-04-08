@@ -1,7 +1,7 @@
 # Below will be uncommented if I decide to use an API during this project
-# require "net/http"
-# require "uri"
-# require "json"
+require "net/http"
+require "uri"
+require "json"
 require "csv"
 
 # Reset Database
@@ -35,6 +35,24 @@ Order.connection.execute("UPDATE SQLITE_SEQUENCE SET SEQ=0 WHERE NAME= 'orders'"
 OrderHistory.connection.execute("UPDATE SQLITE_SEQUENCE SET SEQ=0 WHERE NAME= 'order_histories'")
 
 puts "*** Primary Key auto-incrementing value reset to 1 ***"
+
+# Output absolute path of the specified file adn store into variable
+arabica_path = Rails.root.join("db/coffee_csv/arabica.csv")
+robusta_path = Rails.root.join("db/coffee_csv/robusta.csv")
+brands_path = Rails.root.join("db/coffee_csv/brands.csv")
+grinds_path = Rails.root.join("db/coffee_csv/grinds.csv")
+
+# Return all contents of csv and store into variable
+arabica_data = File.read(arabica_path)
+robusta_data = File.read(robusta_path)
+brands_data = File.read(brands_path)
+grinds_data = File.read(grinds_path)
+
+# Parse out data row by row in the csv file
+arabica = CSV.parse(arabica_data, headers: true, encoding: "utf-8")
+robusta = CSV.parse(robusta_data, headers: true, encoding: "utf-8")
+brands = CSV.parse(brands_data, headers: true, encoding: "utf-8")
+grinds = CSV.parse(grinds_data, headers: true, encoding: "utf-8")
 
 # *** Propogate PK Tables ***
 

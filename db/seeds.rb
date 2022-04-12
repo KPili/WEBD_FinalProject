@@ -16,7 +16,7 @@ Province.destroy_all
 # PKs
 # Job.destroy_all
 GrindType.destroy_all
-# Species.destroy_all
+Species.destroy_all
 TaxRate.destroy_all
 
 puts "*** Table Contents Deleted ***"
@@ -24,7 +24,7 @@ puts "*** Table Contents Deleted ***"
 # Reset PK to 1 for all tables
 # Job.connection.execute("UPDATE SQLITE_SEQUENCE SET SEQ=0 WHERE NAME= 'jobs'")
 GrindType.connection.execute("UPDATE SQLITE_SEQUENCE SET SEQ=0 WHERE NAME= 'grind_types'")
-# Species.connection.execute("UPDATE SQLITE_SEQUENCE SET SEQ=0 WHERE NAME= 'species'")
+Species.connection.execute("UPDATE SQLITE_SEQUENCE SET SEQ=0 WHERE NAME= 'species'")
 TaxRate.connection.execute("UPDATE SQLITE_SEQUENCE SET SEQ=0 WHERE NAME= 'tax_rates'")
 # Supplier.connection.execute("UPDATE SQLITE_SEQUENCE SET SEQ=0 WHERE NAME= 'suppliers'")
 # Inventory.connection.execute("UPDATE SQLITE_SEQUENCE SET SEQ=0 WHERE NAME= 'inventories'")
@@ -68,7 +68,14 @@ grinds.each do |g|
   )
 end
 # Species
-#   - Will use coffee csv's
+# Will use a small array
+coffee_species = ["arabica", "robusta"]
+
+coffee_species.each do |species|
+  Species.create(
+    name: species
+  )
+end
 
 # Tax Rates
 # Will use API [https://api.salestaxapi.ca/v2/province/all] - [ab, bc, mb, nb, nl, ns, nt, nu, on, pe, qc, sk, yt]
@@ -127,3 +134,16 @@ end
 
 # Order_History
 #   - Implement AFTER Shopping Cart Functionality
+
+# DELETE BELOW AFTER
+puts "Created #{TaxRate.count} Tax Rates"
+puts "Created #{Species.count} Species"
+puts "Created #{GrindType.count} Grind Types"
+puts "Created #{Job.count} Jobs"
+puts "Created #{Supplier.count} Suppliers"
+puts "Created #{Inventory.count} Inventories"
+puts "Created #{InventoryDetail.count} Inventory Details"
+puts "Created #{Employee.count} Employees"
+puts "Created #{Province.count} Provinces"
+puts "Created #{Order.count} Orders"
+puts "Created #{OrderHistory.count} Order Histories"

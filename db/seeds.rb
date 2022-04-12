@@ -8,7 +8,7 @@ require "csv"
 # FKs
 # OrderHistory.destroy_all
 # Order.destroy_all
-# Province.destroy_all
+Province.destroy_all
 # Employee.destroy_all
 # InventoryDetail.destroy_all
 # Inventory.destroy_all
@@ -17,7 +17,7 @@ require "csv"
 # Job.destroy_all
 GrindType.destroy_all
 # Species.destroy_all
-# TaxRate.destroy_all
+TaxRate.destroy_all
 
 puts "*** Table Contents Deleted ***"
 
@@ -25,12 +25,12 @@ puts "*** Table Contents Deleted ***"
 # Job.connection.execute("UPDATE SQLITE_SEQUENCE SET SEQ=0 WHERE NAME= 'jobs'")
 GrindType.connection.execute("UPDATE SQLITE_SEQUENCE SET SEQ=0 WHERE NAME= 'grind_types'")
 # Species.connection.execute("UPDATE SQLITE_SEQUENCE SET SEQ=0 WHERE NAME= 'species'")
-# TaxRate.connection.execute("UPDATE SQLITE_SEQUENCE SET SEQ=0 WHERE NAME= 'tax_rates'")
+TaxRate.connection.execute("UPDATE SQLITE_SEQUENCE SET SEQ=0 WHERE NAME= 'tax_rates'")
 # Supplier.connection.execute("UPDATE SQLITE_SEQUENCE SET SEQ=0 WHERE NAME= 'suppliers'")
 # Inventory.connection.execute("UPDATE SQLITE_SEQUENCE SET SEQ=0 WHERE NAME= 'inventories'")
 # InventoryDetail.connection.execute("UPDATE SQLITE_SEQUENCE SET SEQ=0 WHERE NAME= 'inventory_details'")
 # Employee.connection.execute("UPDATE SQLITE_SEQUENCE SET SEQ=0 WHERE NAME= 'employees'")
-# Province.connection.execute("UPDATE SQLITE_SEQUENCE SET SEQ=0 WHERE NAME= 'provinces'")
+Province.connection.execute("UPDATE SQLITE_SEQUENCE SET SEQ=0 WHERE NAME= 'provinces'")
 # Order.connection.execute("UPDATE SQLITE_SEQUENCE SET SEQ=0 WHERE NAME= 'orders'")
 # OrderHistory.connection.execute("UPDATE SQLITE_SEQUENCE SET SEQ=0 WHERE NAME= 'order_histories'")
 
@@ -71,27 +71,13 @@ end
 #   - Will use coffee csv's
 
 # Tax Rates
-#   - Will use API [https://api.salestaxapi.ca/v2/province/all] - [ab, bc, mb, nb, nl, ns, nt, nu, on, pe, qc, sk, yt]
+# Will use API [https://api.salestaxapi.ca/v2/province/all] - [ab, bc, mb, nb, nl, ns, nt, nu, on, pe, qc, sk, yt]
+tax_api_url = "https://api.salestaxapi.ca/v2/province/all"
+tax_api_uri = URI(tax_api_url)
+tax_api_response = Net::HTTP.get(tax_api_uri)
+tax_rate_data = JSON.parse(tax_api_response)
 
-# *** Propogate FK Tables ***
-
-# Suppliers
-#   - Will use Faker
-
-# Inventory
-#   - Will use Faker
-
-# Inventory Details
-#   - Will use coffee API
-
-# Employees
-#   - Will use Faker + Instructor
-
-# Provinces
-#   - Will use dictionary/hashmap
-
-# Orders
-#   - Implement for Shopping Cart Functionality
+# Provinces Hash in alphabetical order
 province_full_name = {
   "ab" => "Alberta",
   "bc" => "British Columbia",
@@ -107,5 +93,37 @@ province_full_name = {
   "sk" => "Saskatchewan",
   "yt" => "Yukon Territories"
 }
+
+# Propogate TaxRates
+tax_rate_data.each do |pcode, tax|
+  province_tax_rate = TaxRate.create(
+    gst:        tax["gst"],
+    pst:        tax["pst"],
+    hst:        tax["hst"],
+    applicable: tax["applicable"]
+  )
+  # Propogate Provinces
+  province_tax_rate.provinces.create(
+    province_code: pcode,
+    province_name: province_full_name[pcode]
+  )
+end
+# *** Propogate FK Tables ***
+
+# Suppliers
+#   - Will use Faker
+
+# Inventory
+#   - Will use Faker
+
+# Inventory Details
+#   - Will use coffee API
+
+# Employees
+#   - Will use Faker + Instructor
+
+# Orders
+#   - Implement for Shopping Cart Functionality
+
 # Order_History
 #   - Implement AFTER Shopping Cart Functionality

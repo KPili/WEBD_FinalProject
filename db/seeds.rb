@@ -14,7 +14,7 @@ Province.destroy_all
 # Inventory.destroy_all
 # Supplier.destroy_all
 # PKs
-# Job.destroy_all
+Job.destroy_all
 GrindType.destroy_all
 Species.destroy_all
 TaxRate.destroy_all
@@ -22,7 +22,7 @@ TaxRate.destroy_all
 puts "*** Table Contents Deleted ***"
 
 # Reset PK to 1 for all tables
-# Job.connection.execute("UPDATE SQLITE_SEQUENCE SET SEQ=0 WHERE NAME= 'jobs'")
+Job.connection.execute("UPDATE SQLITE_SEQUENCE SET SEQ=0 WHERE NAME= 'jobs'")
 GrindType.connection.execute("UPDATE SQLITE_SEQUENCE SET SEQ=0 WHERE NAME= 'grind_types'")
 Species.connection.execute("UPDATE SQLITE_SEQUENCE SET SEQ=0 WHERE NAME= 'species'")
 TaxRate.connection.execute("UPDATE SQLITE_SEQUENCE SET SEQ=0 WHERE NAME= 'tax_rates'")
@@ -57,7 +57,21 @@ grinds = CSV.parse(grinds_data, headers: true, encoding: "utf-8")
 # *** Propogate PK Tables ***
 
 # Jobs
-#   - Manager & Barista must exist: Will use Faker for other job roles
+# Hash with the only available roles at the coffee shop
+coffee_shop_jobs = {
+  "Manager" => "A Manager accomplishes department objectives by managing staff; planning and evaluating department activities. Maintains staff by recruiting, selecting, orienting, and training employees. Ensures a safe, secure, and legal work environment. Develops personal growth opportunities.",
+  "Barista" => "A Barista is a professional who makes and serves beverages such as coffee, tea and specialty beverages. They are responsible for taking customer orders and payments. They also clean and sanitize their work areas, seating areas and equipment/tools",
+  "Roaster" => "A Roaster acquires coffee beans from around the world and roasts them to obtain different taste profiles. Your job duties may include negotiating with coffee bean wholesalers or coffee farmers, roasting coffee beans, experimenting with roast levels, aroma, grind, and flavors."
+}
+
+# Propogate jobs table
+coffee_shop_jobs.each do |title, desc|
+  coffee_job = Job.create(
+    job_title:  title,
+    job_desc:   desc,
+    start_date: DateTime.now
+  )
+end
 
 # Grind Types
 #   - Will scrape data and use that with descriptions
@@ -68,16 +82,17 @@ grinds.each do |g|
   )
 end
 # Species
-# Will use a small array
+# Array of two species of coffee found at the coffee shop
 coffee_species = ["arabica", "robusta"]
 
+# Propogate species table
 coffee_species.each do |species|
   Species.create(
     name: species
   )
 end
 
-# Tax Rates
+# Tax Rates + Provinces
 # Will use API [https://api.salestaxapi.ca/v2/province/all] - [ab, bc, mb, nb, nl, ns, nt, nu, on, pe, qc, sk, yt]
 tax_api_url = "https://api.salestaxapi.ca/v2/province/all"
 tax_api_uri = URI(tax_api_url)
@@ -115,10 +130,11 @@ tax_rate_data.each do |pcode, tax|
     province_name: province_full_name[pcode]
   )
 end
+
 # *** Propogate FK Tables ***
 
 # Suppliers
-#   - Will use Faker
+#   -
 
 # Inventory
 #   - Will use Faker

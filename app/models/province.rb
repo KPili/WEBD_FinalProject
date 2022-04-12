@@ -1,6 +1,7 @@
 class Province < ApplicationRecord
   # Association
   has_many :orders
+  belongs_to :tax_rate
 
   # Validation
   validates :province_code, :province_name, presence: true

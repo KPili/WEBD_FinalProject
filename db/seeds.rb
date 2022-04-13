@@ -4,6 +4,9 @@ require "uri"
 require "json"
 require "csv"
 
+# Reset Faker Values
+Faker::UniqueGenerator.clear
+
 # Reset Database
 # FKs
 # OrderHistory.destroy_all
@@ -12,7 +15,7 @@ Province.destroy_all
 # Employee.destroy_all
 # InventoryDetail.destroy_all
 # Inventory.destroy_all
-# Supplier.destroy_all
+Supplier.destroy_all
 # PKs
 Job.destroy_all
 GrindType.destroy_all
@@ -26,7 +29,7 @@ Job.connection.execute("UPDATE SQLITE_SEQUENCE SET SEQ=0 WHERE NAME= 'jobs'")
 GrindType.connection.execute("UPDATE SQLITE_SEQUENCE SET SEQ=0 WHERE NAME= 'grind_types'")
 Species.connection.execute("UPDATE SQLITE_SEQUENCE SET SEQ=0 WHERE NAME= 'species'")
 TaxRate.connection.execute("UPDATE SQLITE_SEQUENCE SET SEQ=0 WHERE NAME= 'tax_rates'")
-# Supplier.connection.execute("UPDATE SQLITE_SEQUENCE SET SEQ=0 WHERE NAME= 'suppliers'")
+Supplier.connection.execute("UPDATE SQLITE_SEQUENCE SET SEQ=0 WHERE NAME= 'suppliers'")
 # Inventory.connection.execute("UPDATE SQLITE_SEQUENCE SET SEQ=0 WHERE NAME= 'inventories'")
 # InventoryDetail.connection.execute("UPDATE SQLITE_SEQUENCE SET SEQ=0 WHERE NAME= 'inventory_details'")
 # Employee.connection.execute("UPDATE SQLITE_SEQUENCE SET SEQ=0 WHERE NAME= 'employees'")
@@ -57,7 +60,6 @@ grinds = CSV.parse(grinds_data, headers: true, encoding: "utf-8")
 # *** Propogate PK Tables ***
 
 # Jobs
-# Hash with the only available roles at the coffee shop
 coffee_shop_jobs = {
   "Manager" => "A Manager accomplishes department objectives by managing staff; planning and evaluating department activities. Maintains staff by recruiting, selecting, orienting, and training employees. Ensures a safe, secure, and legal work environment. Develops personal growth opportunities.",
   "Barista" => "A Barista is a professional who makes and serves beverages such as coffee, tea and specialty beverages. They are responsible for taking customer orders and payments. They also clean and sanitize their work areas, seating areas and equipment/tools",
@@ -66,7 +68,7 @@ coffee_shop_jobs = {
 
 # Propogate jobs table
 coffee_shop_jobs.each do |title, desc|
-  coffee_job = Job.create(
+  Job.create(
     job_title:  title,
     job_desc:   desc,
     start_date: DateTime.now
@@ -74,7 +76,6 @@ coffee_shop_jobs.each do |title, desc|
 end
 
 # Grind Types
-#   - Will scrape data and use that with descriptions
 grinds.each do |g|
   GrindType.create(
     grind: g["coffee_grind_type"],
@@ -82,7 +83,6 @@ grinds.each do |g|
   )
 end
 # Species
-# Array of two species of coffee found at the coffee shop
 coffee_species = ["arabica", "robusta"]
 
 # Propogate species table
@@ -93,7 +93,6 @@ coffee_species.each do |species|
 end
 
 # Tax Rates + Provinces
-# Will use API [https://api.salestaxapi.ca/v2/province/all] - [ab, bc, mb, nb, nl, ns, nt, nu, on, pe, qc, sk, yt]
 tax_api_url = "https://api.salestaxapi.ca/v2/province/all"
 tax_api_uri = URI(tax_api_url)
 tax_api_response = Net::HTTP.get(tax_api_uri)
@@ -132,9 +131,20 @@ tax_rate_data.each do |pcode, tax|
 end
 
 # *** Propogate FK Tables ***
+manager = Job.first
 
 # Suppliers
-#   -
+8.times do
+  first_name = Faker::Name.unique.first_name
+  last_name = Faker::Name.unique.last_name
+  rep_email = "#{first_name.chr}#{last_name}"
+
+  manager.suppliers.create(
+    company_name: Faker::Company.unique.name,
+    company_rep:  "#{first_name} #{last_name}",
+    email:        Faker::Internet.safe_email(name: rep_email)
+  )
+end
 
 # Inventory
 #   - Will use Faker
@@ -143,7 +153,6 @@ end
 #   - Will use coffee API
 
 # Employees
-#   - Will use Faker + Instructor
 
 # Orders
 #   - Implement for Shopping Cart Functionality
@@ -163,3 +172,6 @@ puts "Created #{Employee.count} Employees"
 puts "Created #{Province.count} Provinces"
 puts "Created #{Order.count} Orders"
 puts "Created #{OrderHistory.count} Order Histories"
+total = TaxRate.count + Species.count + GrindType.count + Job.count + Supplier.count + Inventory.count +
+        InventoryDetail.count + Employee.count + Province.count + Order.count + OrderHistory.count
+puts "Total amount of products seeded = #{total}"

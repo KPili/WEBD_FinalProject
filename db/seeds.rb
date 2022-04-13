@@ -8,6 +8,9 @@ require "csv"
 Faker::UniqueGenerator.clear
 
 # Reset Database
+# Admin Account
+AdminUser.destroy_all
+
 # FKs
 # OrderHistory.destroy_all
 # Order.destroy_all
@@ -16,13 +19,12 @@ Employee.destroy_all
 InventoryDetail.destroy_all
 Inventory.destroy_all
 Supplier.destroy_all
+
 # PKs
 Job.destroy_all
 GrindType.destroy_all
 Species.destroy_all
 TaxRate.destroy_all
-
-puts "*** Table Contents Deleted ***"
 
 # Reset PK to 1 for all tables
 Job.connection.execute("UPDATE SQLITE_SEQUENCE SET SEQ=0 WHERE NAME= 'jobs'")
@@ -37,7 +39,8 @@ Province.connection.execute("UPDATE SQLITE_SEQUENCE SET SEQ=0 WHERE NAME= 'provi
 # Order.connection.execute("UPDATE SQLITE_SEQUENCE SET SEQ=0 WHERE NAME= 'orders'")
 # OrderHistory.connection.execute("UPDATE SQLITE_SEQUENCE SET SEQ=0 WHERE NAME= 'order_histories'")
 
-puts "*** Primary Key auto-incrementing value reset to 1 ***"
+# Reset auto increment id to 1
+AdminUser.connection.execute("UPDATE SQLITE_SEQUENCE SET SEQ=0 WHERE NAME= 'admin_users'")
 
 # Output absolute path of the specified file adn store into variable
 arabica_path = Rails.root.join("db/coffee_csv/arabica.csv")
@@ -231,7 +234,7 @@ end
 # Order_History
 #   - Implement AFTER Shopping Cart Functionality
 
-# DELETE BELOW AFTER
+# DELETE BELOW AFTER - confirm business requirement 1.6
 puts "Created #{TaxRate.count} Tax Rates"
 puts "Created #{Species.count} Species"
 puts "Created #{GrindType.count} Grind Types"
@@ -246,3 +249,9 @@ puts "Created #{OrderHistory.count} Order Histories"
 total = TaxRate.count + Species.count + GrindType.count + Job.count + Supplier.count + Inventory.count +
         InventoryDetail.count + Employee.count + Province.count + Order.count + OrderHistory.count
 puts "Total amount of products seeded = #{total}"
+
+# Active Admin User credentials
+if Rails.env.development?
+  AdminUser.create!(email: "mbialowas@rrc.ca", password: "Password01",
+                    password_confirmation: "Password01")
+end

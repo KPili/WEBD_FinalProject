@@ -12,7 +12,7 @@ Faker::UniqueGenerator.clear
 # OrderHistory.destroy_all
 # Order.destroy_all
 Province.destroy_all
-# Employee.destroy_all
+Employee.destroy_all
 InventoryDetail.destroy_all
 Inventory.destroy_all
 Supplier.destroy_all
@@ -32,7 +32,7 @@ TaxRate.connection.execute("UPDATE SQLITE_SEQUENCE SET SEQ=0 WHERE NAME= 'tax_ra
 Supplier.connection.execute("UPDATE SQLITE_SEQUENCE SET SEQ=0 WHERE NAME= 'suppliers'")
 Inventory.connection.execute("UPDATE SQLITE_SEQUENCE SET SEQ=0 WHERE NAME= 'inventories'")
 InventoryDetail.connection.execute("UPDATE SQLITE_SEQUENCE SET SEQ=0 WHERE NAME= 'inventory_details'")
-# Employee.connection.execute("UPDATE SQLITE_SEQUENCE SET SEQ=0 WHERE NAME= 'employees'")
+Employee.connection.execute("UPDATE SQLITE_SEQUENCE SET SEQ=0 WHERE NAME= 'employees'")
 Province.connection.execute("UPDATE SQLITE_SEQUENCE SET SEQ=0 WHERE NAME= 'provinces'")
 # Order.connection.execute("UPDATE SQLITE_SEQUENCE SET SEQ=0 WHERE NAME= 'orders'")
 # OrderHistory.connection.execute("UPDATE SQLITE_SEQUENCE SET SEQ=0 WHERE NAME= 'order_histories'")
@@ -61,18 +61,39 @@ grinds = CSV.parse(grinds_data, headers: true, encoding: "utf-8")
 
 # Jobs
 coffee_shop_jobs = {
-  "Manager" => "A Manager accomplishes department objectives by managing staff; planning and evaluating department activities. Maintains staff by recruiting, selecting, orienting, and training employees. Ensures a safe, secure, and legal work environment. Develops personal growth opportunities.",
-  "Barista" => "A Barista is a professional who makes and serves beverages such as coffee, tea and specialty beverages. They are responsible for taking customer orders and payments. They also clean and sanitize their work areas, seating areas and equipment/tools",
-  "Roaster" => "A Roaster acquires coffee beans from around the world and roasts them to obtain different taste profiles. Your job duties may include negotiating with coffee bean wholesalers or coffee farmers, roasting coffee beans, experimenting with roast levels, aroma, grind, and flavors."
+  "Manager"                  => "A Manager accomplishes department objectives by managing staff; planning and evaluating department activities. Maintains staff by recruiting, selecting, orienting, and training employees. Ensures a safe, secure, and legal work environment. Develops personal growth opportunities.",
+  "Administrative Assistant" => "An Administrative Assistant provides office support for the businesses. They may draft various documents and types of business correspondence. Administrative assistants also often provide phone support and customer service, handle scheduling and prepare and proofread reports.",
+  "Barista"                  => "A Barista is a professional who makes and serves beverages such as coffee, tea and specialty beverages. They are responsible for taking customer orders and payments. They also clean and sanitize their work areas, seating areas and equipment/tools",
+  "Roaster"                  => "A Roaster acquires coffee beans from around the world and roasts them to obtain different taste profiles. Your job duties may include negotiating with coffee bean wholesalers or coffee farmers, roasting coffee beans, experimenting with roast levels, aroma, grind, and flavors."
 }
 
 # Propogate jobs table
 coffee_shop_jobs.each do |title, desc|
-  Job.create(
+  coffee_shop_job = Job.create(
     job_title:  title,
     job_desc:   desc,
     start_date: DateTime.now
   )
+
+  # Employee Creation
+  # Manager must be instructor as indicated in the proposal document
+  if coffee_shop_job.id == 1
+    coffee_shop_job.employees.create(
+      f_name:    "Michael",
+      l_name:    "Bialowas",
+      phone_num: "(204) 632-3960",
+      email:     "mbialowas@rrc.ca"
+    )
+  else
+    first_name = Faker::Name.unique.first_name
+    last_name = Faker::Name.unique.last_name
+    coffee_shop_job.employees.create(
+      f_name:    first_name,
+      l_name:    last_name,
+      phone_num: Faker::PhoneNumber.unique.cell_phone,
+      email:     "#{first_name.chr}#{last_name}@rrc.ca"
+    )
+  end
 end
 
 # Grind Types
@@ -203,8 +224,6 @@ arabica.each do |a|
   )
   new_id_count += 1
 end
-
-# Employees
 
 # Orders
 #   - Implement for Shopping Cart Functionality

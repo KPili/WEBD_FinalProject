@@ -14,7 +14,7 @@ Faker::UniqueGenerator.clear
 Province.destroy_all
 # Employee.destroy_all
 # InventoryDetail.destroy_all
-# Inventory.destroy_all
+Inventory.destroy_all
 Supplier.destroy_all
 # PKs
 Job.destroy_all
@@ -30,7 +30,7 @@ GrindType.connection.execute("UPDATE SQLITE_SEQUENCE SET SEQ=0 WHERE NAME= 'grin
 Species.connection.execute("UPDATE SQLITE_SEQUENCE SET SEQ=0 WHERE NAME= 'species'")
 TaxRate.connection.execute("UPDATE SQLITE_SEQUENCE SET SEQ=0 WHERE NAME= 'tax_rates'")
 Supplier.connection.execute("UPDATE SQLITE_SEQUENCE SET SEQ=0 WHERE NAME= 'suppliers'")
-# Inventory.connection.execute("UPDATE SQLITE_SEQUENCE SET SEQ=0 WHERE NAME= 'inventories'")
+Inventory.connection.execute("UPDATE SQLITE_SEQUENCE SET SEQ=0 WHERE NAME= 'inventories'")
 # InventoryDetail.connection.execute("UPDATE SQLITE_SEQUENCE SET SEQ=0 WHERE NAME= 'inventory_details'")
 # Employee.connection.execute("UPDATE SQLITE_SEQUENCE SET SEQ=0 WHERE NAME= 'employees'")
 Province.connection.execute("UPDATE SQLITE_SEQUENCE SET SEQ=0 WHERE NAME= 'provinces'")
@@ -40,21 +40,21 @@ Province.connection.execute("UPDATE SQLITE_SEQUENCE SET SEQ=0 WHERE NAME= 'provi
 puts "*** Primary Key auto-incrementing value reset to 1 ***"
 
 # Output absolute path of the specified file adn store into variable
-# arabica_path = Rails.root.join("db/coffee_csv/arabica.csv")
-# robusta_path = Rails.root.join("db/coffee_csv/robusta.csv")
-# brands_path = Rails.root.join("db/coffee_csv/brands.csv")
+arabica_path = Rails.root.join("db/coffee_csv/arabica.csv")
+robusta_path = Rails.root.join("db/coffee_csv/robusta.csv")
+brands_path = Rails.root.join("db/coffee_csv/brands.csv")
 grinds_path = Rails.root.join("db/coffee_csv/grinds.csv")
 
 # Return all contents of csv and store into variable
-# arabica_data = File.read(arabica_path)
-# robusta_data = File.read(robusta_path)
-# brands_data = File.read(brands_path)
+arabica_data = File.read(arabica_path)
+robusta_data = File.read(robusta_path)
+brands_data = File.read(brands_path)
 grinds_data = File.read(grinds_path)
 
 # Parse out data row by row in the csv file
-# arabica = CSV.parse(arabica_data, headers: true, encoding: "utf-8")
-# robusta = CSV.parse(robusta_data, headers: true, encoding: "utf-8")
-# brands = CSV.parse(brands_data, headers: true, encoding: "utf-8")
+arabica = CSV.parse(arabica_data, headers: true, encoding: "utf-8")
+robusta = CSV.parse(robusta_data, headers: true, encoding: "utf-8")
+brands = CSV.parse(brands_data, headers: true, encoding: "utf-8")
 grinds = CSV.parse(grinds_data, headers: true, encoding: "utf-8")
 
 # *** Propogate PK Tables ***
@@ -147,7 +147,24 @@ manager = Job.first
 end
 
 # Inventory
-#   - Will use Faker
+brands.each do |b|
+  random_valid_id = Faker::Number.between(from: 1, to: Supplier.count)
+  select_supplier = Supplier.find(random_valid_id)
+  unit_sold = Faker::Number.between(from: 1, to: 10)
+  new_inventory_value = Faker::Number.between(from: 0, to: 1)
+  unit_price = b["unit_price"]
+  profit_multiplyer = 1.33
+
+  select_supplier.inventories.create(
+    item_name:     b["item_name"],
+    unit_sold:     unit_sold,
+    unit_price:    unit_price,
+    stock_amount:  Faker::Number.between(from: 1, to: 30),
+    new_inventory: new_inventory_value,
+    total:         unit_sold * unit_price.to_f,
+    retail_total:  b["retail_total"] * profit_multiplyer
+  )
+end
 
 # Inventory Details
 #   - Will use coffee API

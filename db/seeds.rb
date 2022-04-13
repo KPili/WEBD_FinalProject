@@ -13,7 +13,7 @@ Faker::UniqueGenerator.clear
 # Order.destroy_all
 Province.destroy_all
 # Employee.destroy_all
-# InventoryDetail.destroy_all
+InventoryDetail.destroy_all
 Inventory.destroy_all
 Supplier.destroy_all
 # PKs
@@ -31,7 +31,7 @@ Species.connection.execute("UPDATE SQLITE_SEQUENCE SET SEQ=0 WHERE NAME= 'specie
 TaxRate.connection.execute("UPDATE SQLITE_SEQUENCE SET SEQ=0 WHERE NAME= 'tax_rates'")
 Supplier.connection.execute("UPDATE SQLITE_SEQUENCE SET SEQ=0 WHERE NAME= 'suppliers'")
 Inventory.connection.execute("UPDATE SQLITE_SEQUENCE SET SEQ=0 WHERE NAME= 'inventories'")
-# InventoryDetail.connection.execute("UPDATE SQLITE_SEQUENCE SET SEQ=0 WHERE NAME= 'inventory_details'")
+InventoryDetail.connection.execute("UPDATE SQLITE_SEQUENCE SET SEQ=0 WHERE NAME= 'inventory_details'")
 # Employee.connection.execute("UPDATE SQLITE_SEQUENCE SET SEQ=0 WHERE NAME= 'employees'")
 Province.connection.execute("UPDATE SQLITE_SEQUENCE SET SEQ=0 WHERE NAME= 'provinces'")
 # Order.connection.execute("UPDATE SQLITE_SEQUENCE SET SEQ=0 WHERE NAME= 'orders'")
@@ -167,7 +167,42 @@ brands.each do |b|
 end
 
 # Inventory Details
-#   - Will use coffee API
+# Association to Species
+arabica_beans = Species.where(name: "arabica").take
+robusta_beans = Species.where(name: "robusta").take
+id_count = 1
+
+# Iterate through robusts.csv
+robusta.each do |r|
+  robusta_inventories = Inventory.find(id_count)
+
+  robusta_beans.inventory_details.create(
+    aroma:             r["Aroma"].to_f,
+    flavor:            r["Flavor"].to_f,
+    acidity:           r["Acid"].to_f,
+    country_of_origin: r["Country.of.Origin"],
+    on_sale:           Faker::Number.between(from: 0, to: 1),
+    inventory_id:      robusta_inventories.id
+  )
+
+  id_count += 1
+end
+
+new_id_count = InventoryDetail.count + 1
+
+arabica.each do |a|
+  arabica_inventories = Inventory.find(new_id_count)
+
+  arabica_beans.inventory_details.create(
+    aroma:             a["Aroma"].to_f,
+    flavor:            a["Flavor"].to_f,
+    acidity:           a["Acid"].to_f,
+    country_of_origin: a["Country.of.Origin"],
+    on_sale:           Faker::Number.between(from: 0, to: 1),
+    inventory_id:      arabica_inventories.id
+  )
+  new_id_count += 1
+end
 
 # Employees
 

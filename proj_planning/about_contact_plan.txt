@@ -1,0 +1,27 @@
+Purpose is to plan out:
+
+Contact Page:
+-------------
+* Location of the Business
+  - Street Address
+  - City
+  - Province
+  - Country
+  - Postal Code
+
+* Hours of Operations
+  - Days of the week
+  - Hours
+
+* Phone Number
+  - phone_number
+
+rails g model contact street_address:string city:string postal_code:string bstart:string bend:string stime:string etime:string phone:string email:string
+
+About Page:
+-----------
+* About Us
+* Our Mission
+* Our Vision
+
+rails g model about about_us:text mission:text vision:text

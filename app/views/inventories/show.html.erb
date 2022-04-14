@@ -1,0 +1,14 @@
+<h2><%= @inventory.inventory.item_name%></h1>
+<div>
+  <%if @inventory.inventory.new_inventory%>
+    <li>Price: <%= (@inventory.inventory.retail_total/1.2).round(2)%></li>
+    <li>Product is on sale!</li>
+  <%else%>
+    <li>Price: <%= (@inventory.inventory.retail_total).round(2)%></li>
+  <%end%>
+  <h3> Coffee Quality Institute's Reviews</h3>
+  <li>Aroma: <%=@inventory.aroma%>/10</li>
+  <li>Flavor: <%=@inventory.flavor%>/10</li>
+  <li>Acidity: <%=@inventory.acidity%>/10</li>
+  <li>Country of Origin (COG): <%= @inventory.country_of_origin%></li>
+</div>

@@ -1,0 +1,8 @@
+<h1><%= @employee.f_name.concat(" " + @employee.l_name)%></h1>
+<img src="#" alt="IMAGE">
+<div>
+  <p>Start Date: <%=@job.start_date%></p>
+  <p>Role: <%=@job.job_title%></p>
+  <p>Duties: <%=@job.job_desc%></p>
+  <p>Quote of the day: <%= Faker::Quote.matz%></p>
+</div>

@@ -1,0 +1,9 @@
+<h1>Employees</h1>
+<% @employees.each do |e|%>
+  <div>
+    <img src="#" alt="Employee_Image">
+    <li>Name: <%= "#{e.f_name} #{e.l_name}"%></li>
+    <li>Role: <%= e.job.job_title%></li>
+  </div>
+  <a href="/employees/<%=e.id%>">Learn More</a>
+<%end%>

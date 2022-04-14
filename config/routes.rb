@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
-  get "contacts/index"
+  # get 'employees/index'
+  # get 'employees/show'
+  # get "contacts/index"
   # get 'abouts/index'
   # get 'home/index'
 
@@ -15,4 +17,7 @@ Rails.application.routes.draw do
 
   # Contact Page
   get "pcr/contact-us" => "contacts#index", as: "contact"
+
+  # Employee Details Page
+  resources :employees, only: %i[index show]
 end

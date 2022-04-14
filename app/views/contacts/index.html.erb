@@ -1,0 +1,20 @@
+<h1>Princess Coffee Roasters</h1>
+<h2>Contact Us</h2>
+
+<div>
+  <h3>Location</h3>
+  <li><%=@contact.street_address%></li>
+  <li><%=@contact.city%>, <%=@contact.postal_code%></li>
+</div>
+
+<div>
+  <h3>Hours</h3>
+  <li><%=@contact.b_start%> - <%=@contact.b_end%>, <%=@contact.s_time%> - <%=@contact.e_time%></li>
+</div>
+
+<div>
+  <h3>Phone</h3>
+  <li><%=@contact.phone%></li>
+  <h3>Email</h3>
+  <li><%=@contact.email%></li>
+</div>

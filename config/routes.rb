@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get "contacts/index"
   # get 'abouts/index'
   # get 'home/index'
 
@@ -11,4 +12,7 @@ Rails.application.routes.draw do
 
   # About Page
   get "pcr/about" => "abouts#index", as: "about"
+
+  # Contact Page
+  get "pcr/contact-us" => "contacts#index", as: "contact"
 end

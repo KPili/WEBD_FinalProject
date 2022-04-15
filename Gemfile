@@ -79,3 +79,6 @@ group :test do
   gem "selenium-webdriver"
   gem "webdrivers"
 end
+
+# Font Awesome [https://github.com/FortAwesome/font-awesome-sass]
+gem 'font-awesome-sass', '~> 6.1.1'

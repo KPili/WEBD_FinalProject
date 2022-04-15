@@ -1,0 +1,28 @@
+<%# Reference: https://mdbootstrap.com/docs/standard/navigation/footer/ %>
+<%# Footer %>
+<footer class="bg-dark text-center text-white fixed-bottom">
+  <%# Grid Container %>
+  <div class="container p-4 pb-0">
+    <%# Footer Navigation Icons %>
+    <section class="mb-4">
+      <%# Home Page %>
+      <%= link_to icon("fa-solid", "house"), root_path, class: "btn btn-outline-light btn-floating m-1", title: "Home"%>
+      <%# About Us Page %>
+      <%= link_to icon("fa-solid", "user"), about_path, class: "btn btn-outline-light btn-floating m-1", title: "About Us"%>
+      <%# Contact Us Page %>
+      <%= link_to icon("fa-solid", "phone"), contact_path, class: "btn btn-outline-light btn-floating m-1", title: "Contact Us"%>
+      <%# Employees %>
+      <%= link_to icon("fa-brands", "product-hunt"), inventories_path, class: "btn btn-outline-light btn-floating m-1", title: "Products"%>
+      <%# Inventories %>
+      <%= link_to icon("fa-solid", "users"), inventories_path, class: "btn btn-outline-light btn-floating m-1", title: "Staff"%>
+    </section>
+    <%# Footer Navigation Icons --END-- %>
+  </div>
+  <%# Grid Container --END-- %>
+  <%# Copyright Container %>
+  <div class="text-center p-3" style="background-color: rgba(0,0,0,0.2);">
+    &copy; Copyright: <%=link_to "PrincessCoffeeRoasters.com", root_path%>
+  </div>
+  <%# Copyright Container --END-- %>
+</footer>
+<%# Footer --END-- %>

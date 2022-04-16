@@ -1,16 +1,51 @@
-<h1>Princess Coffee Roasters</h1>
-
-<div>
-  <h3>About</h3>
-  <p><%=@about.about_us%></p>
-</div>
-
-<div>
-  <h3>Mission</h3>
-  <p><%=@about.mission%></p>
-</div>
-
-<div>
-  <h3>Vision</h3>
-  <p><%=@about.vision%></p>
-</div>
+<%# Header Section %>
+<section id="header-section">
+  <div class="container">
+    <div class="row">
+      <div class="col text-center py-5">
+        <h1 class="display-3">Princess Coffee Roasters</h1>
+        <figure>
+          <blockquote class="blockquote">
+            <p><em>"It's amazing how the world begins to change through the eyes of a cup of coffee"</em></p>
+          </blockquote>
+          <figcaption class="blockquote-footer">
+            Donna A. Favors
+          </figcaption>
+        </figure>
+      </div>
+    </div>
+  </div>
+</section>
+<%# About Section %>
+<section id="about-section" style="background-color:#E8E8E8;">
+  <div class="container">
+    <div class="row">
+      <div class="col text-center py-4">
+        <h1 class="display-5">About Us</h1>
+        <p><%=@about.about_us%></p>
+      </div>
+    </div>
+  </div>
+</section>
+<%# Mission Section %>
+<section id="mission-section" style="background-color:#DEDCDC;">
+  <div class="container">
+    <div class="row">
+      <div class="col text-center py-4">
+        <h1 class="display-5">Our Mission</h1>
+        <p><%=@about.mission%></p>
+      </div>
+    </div>
+  </div>
+</section>
+<%# Vission Section %>
+<section id="vission-section" style="background-color:#D1D1D1;">
+  <div class="container mb-5">
+    <div class="row pb-5">
+      <div class="col text-center py-4">
+        <h1 class="display-5">Our Vission</h1>
+        <p><%=@about.vision%></p>
+      </div>
+    </div>
+  </div>
+</section>

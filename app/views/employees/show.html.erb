@@ -1,5 +1,13 @@
+<%# Header %>
 <div class="container">
-  <h1 class="display-3"><%= @employee.f_name.concat(" " + @employee.l_name)%></h1>
+  <div class="row">
+    <div class="col text-center py-5">
+      <h1 class="display-3"><%= @employee.f_name.concat(" " + @employee.l_name)%></h1>
+    </div>
+  </div>
+</div>
+<%# Contents %>
+<div class="container">
   <div class="card">
     <img src="#" alt="image" class="card-img-top">
     <div class="card-body">

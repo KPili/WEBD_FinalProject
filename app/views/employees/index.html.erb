@@ -1,9 +1,27 @@
-<h1>Employees</h1>
-<% @employees.each do |e|%>
-  <div>
-    <img src="#" alt="Employee_Image">
-    <li>Name: <%= "#{e.f_name} #{e.l_name}"%></li>
-    <li>Role: <%= e.job.job_title%></li>
+<div class="container">
+  <h1 class="display-3">Meet our Team</h1>
+  <div class="row">
+    <%# For each employee create a card %>
+    <% @employees.each do |employee|%>
+      <div class="col-sm">
+        <%# Card Start %>
+        <div class="card">
+          <img src="#" alt="image" class="card-img-top">
+          <%# Card Body Start %>
+          <div class="card-body">
+            <h5 class="card-title"><%="#{employee.f_name} #{employee.l_name}"%></h5>
+            <p class="card-text">
+              <small class="text-muted"><%=employee.job.job_title%></small>
+            </p>
+          </div>
+          <%# Card Body --END-- %>
+          <%# Card Footer Start %>
+          <div class="card-footer">
+            <%= link_to "Learn More",employee, class:"btn btn-outline-primary text-decoration-none"%>
+          </div>
+        </div>
+        <%# Card --END-- %>
+      </div>
+    <%end%>
   </div>
-  <a href="/employees/<%=e.id%>">Learn More</a>
-<%end%>
+</div>

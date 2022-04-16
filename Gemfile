@@ -82,3 +82,6 @@ end
 
 # Font Awesome [https://github.com/FortAwesome/font-awesome-sass]
 gem 'font-awesome-sass', '~> 6.1.1'
+
+# For pagination
+gem 'kaminari', '~> 1.2', '>= 1.2.2'

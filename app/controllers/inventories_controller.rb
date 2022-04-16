@@ -1,6 +1,6 @@
 class InventoriesController < ApplicationController
   def index
-    @inventories = InventoryDetail.includes(:inventory).all
+    @inventories = InventoryDetail.includes(:inventory).page(params[:page])
   end
 
   def show

@@ -15,5 +15,9 @@ Rails.application.routes.draw do
   resources :employees, only: %i[index show]
 
   # Inventory & Details Page
-  resources :inventories, only: %i[index show]
+  resources :inventories, only: %i[index show] do
+    collection do
+      get "search"
+    end
+  end
 end

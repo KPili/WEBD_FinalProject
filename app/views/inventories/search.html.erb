@@ -1,0 +1,13 @@
+<h2>Coffee Brand search results for: <%= params[:keywords]%></h2>
+
+<ul>
+  <% @inventories_results.each do |result|%>
+    <li>
+      Product:<%=result.item_name%>
+    </li>
+    <li>
+      Price: <%= result.retail_total%>
+    </li>
+    <br>
+  <%end%>
+</ul>

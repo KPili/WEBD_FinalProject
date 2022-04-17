@@ -1,15 +1,51 @@
-<h1>PCR Inventory</h1>
-<%= paginate @inventories%>
-<% @inventories.each do |i|%>
-  <div>
-    <img src="#" alt="coffee img">
-    <li><%=i.inventory.item_name%></li>
-    <%if i.inventory.new_inventory%>
-      <li>Price: <%= (i.inventory.retail_total/1.2).round(2)%></li>
-      <li>Product is on sale!</li>
-    <%else%>
-      <li>Price: <%= (i.inventory.retail_total).round(2)%></li>
+<%# Header %>
+<div class="container">
+  <div class="row">
+    <div class="col text-center py-5">
+      <h1 class="display-3">Coffee Roasts</h1>
+    </div>
+  </div>
+</div>
+<%# Content %>
+<div class="container">
+  <div class="row">
+    <%@inventories.each do |i|%>
+      <div class="col-3">
+        <div class="card my-2">
+        <%# IF item is on sale image will have text on it %>
+          <%if i.inventory.new_inventory%>
+            <img src="#" alt="On Sale" class="card-img-top">
+          <%else%>
+            <img src="#" alt="Regular" class="card-img-top">
+          <%end%>
+          <div class="card-body">
+            <h5 class="card-title">
+              <a href="/inventories/<%=i.id%>" class="text-decoration-none"><%=i.inventory.item_name%></a>
+            </h5>
+          </div>
+          <div class="card-footer">
+            <p class="card-text">
+              <%if i.inventory.new_inventory%>
+                $<%=(i.inventory.retail_total/1.2).round(2)%><br>
+              <%else%>
+                $<%=(i.inventory.retail_total).round(2)%>
+              <%end%>
+            </p>
+          </div>
+        </div>
+        <%# Card --END-- %>
+      </div>
+      <%# Col-sm --END-- %>
     <%end%>
   </div>
-  <a href="/inventories/<%=i.id%>">Details</a>
-<%end%>
+  <%# Row --END-- %>
+  <div class="row">
+  <div class="col-3 mt-2"><%= paginate @inventories%></div>
+  <div class="col-3"></div>
+  <div class="col-3"></div>
+  <div class="col-3"></div>
+  </div>
+</div>
+<%# Container --END-- %>
+
+

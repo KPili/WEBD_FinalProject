@@ -13,7 +13,7 @@
       <div class="col-3">
         <div class="card my-2">
         <%# IF item is on sale image will have text on it %>
-          <%if i.inventory.new_inventory%>
+          <%if !(i.inventory.new_inventory)%>
             <img src="#" alt="On Sale" class="card-img-top">
           <%else%>
             <img src="#" alt="Regular" class="card-img-top">
@@ -27,7 +27,7 @@
           </div>
           <div class="card-footer">
             <p class="card-text">
-              <%if i.inventory.new_inventory%>
+              <%if !(i.inventory.new_inventory)%>
                 $<%=(i.inventory.retail_total/1.2).round(2)%><br>
               <%else%>
                 $<%=(i.inventory.retail_total).round(2)%>

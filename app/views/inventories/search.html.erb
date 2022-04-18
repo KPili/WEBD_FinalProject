@@ -13,7 +13,7 @@
     <% @inventories_results.each do |result|%>
       <div class="col-3">
         <div class="card my-2">
-          <%if result.new_inventory%>
+          <%if !(result.new_inventory)%>
             <img src="#" alt="On Sale" class="card-img-top">
           <%else%>
             <img src="#" alt="Regular" class="card-img-top">
@@ -29,7 +29,7 @@
           <%# Card Footer %>
           <div class="card-footer">
             <div class="card-text">
-              <%if result.new_inventory%>
+              <%if !(result.new_inventory)%>
                 $<%=(result.retail_total/1.2).round(2)%>
               <%else%>
                 $<%=(result.retail_total).round(2)%>

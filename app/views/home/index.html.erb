@@ -1,21 +1,75 @@
 <%# Header %>
-<div class="container">
-  <div class="row">
-    <div class="col text-center py-5">
-      <h1 class="display-3">Princess Coffee Roasters</h1>
-      <figure>
-        <blockquote class="blockquote">
-          <p><em>"What goes best with a cup of coffee? Another cup."</em></p>
-        </blockquote>
-        <figcaption class="blockquote-footer">
-          Henry Rollins
-        </figcaption>
-      </figure>
+<section id="header-section">
+  <div class="container">
+    <div class="row">
+      <div class="col text-center py-5">
+        <h1 class="display-3">Princess Coffee Roasters</h1>
+        <figure>
+          <blockquote class="blockquote">
+            <p><em>"What goes best with a cup of coffee? Another cup."</em></p>
+          </blockquote>
+          <figcaption class="blockquote-footer">
+            Henry Rollins
+          </figcaption>
+        </figure>
+      </div>
     </div>
   </div>
-</div>
-
-<%# On sale products (5) %>
-
+</section>
+<%# Welcome Message %>
+<section id="welcome-section" style="background-color:#373737;">
+  <div class="container">
+    <div class="row">
+      <div class="col text-center py-5">
+        <h1 class="display-5">
+          Welcome to Princess Coffee Roasters
+        </h1>
+        <p class="lead text-white">
+          We supply retail and wholesale clients with freshly roasted coffee beans.
+          It was established with respect for tradition and with a zeal for exploring new tastes.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+<%# New Inventories - Text %>
+<section id="new-inventory-message" style="background-color:#EEEEEE;">
+  <div class="container">
+    <div class="row">
+      <div class="col text-center py-5">
+        <h1 class="display-5">
+          Checkout our new Inventory
+        </h1>
+      </div>
+    </div>
+  </div>
+</section>
 <%# New Inventories %>
-
+<section id="inventories">
+  <div class="container">
+    <div class="row">
+      <%@inventory_details.each do |inv|%>
+        <div class="col-3">
+          <div class="card my-2">
+            <img src="#" alt="image">
+            <div class="card-body">
+              <h5 class="card-title">
+                <a href="/inventories/<%=inv.id%>" class="text-decoration-none" title="<%=inv.item_name%>">
+                  <%=(inv.item_name).truncate(36, :separator => ' ')%>
+                </a>
+              </h5>
+              <%# End of Title %>
+            </div>
+            <%# Card Body --END-- %>
+            <%# Card Footer %>
+            <div class="card-footer">
+              <div class="card-text">
+                $<%=inv.retail_total.round(2)%>
+              </div>
+            </div>
+          </div>
+        </div>
+      <%end%>
+    </div>
+  </div>
+</section>

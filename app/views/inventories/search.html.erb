@@ -1,13 +1,46 @@
-<h2>Coffee Brand search results for: <%= params[:keywords]%></h2>
-
-<ul>
-  <% @inventories_results.each do |result|%>
-    <li>
-      Product:<%=result.item_name%>
-    </li>
-    <li>
-      Price: <%= result.retail_total%>
-    </li>
-    <br>
-  <%end%>
-</ul>
+<%# Header %>
+<div class="container">
+  <div class="row">
+    <div class="col text-center py-5">
+      <h1 class="display-3">Coffee Brand search results for: <br><%= params[:keywords]%></h1>
+    </div>
+  </div>
+</div>
+<%# Container --END-- %>
+<%# Content %>
+<div class="container mb-4">
+  <div class="row">
+    <% @inventories_results.each do |result|%>
+      <div class="col-3">
+        <div class="card my-2">
+          <%if result.new_inventory%>
+            <img src="#" alt="On Sale" class="card-img-top">
+          <%else%>
+            <img src="#" alt="Regular" class="card-img-top">
+          <%end%>
+          <div class="card-body">
+            <h5 class="card-title">
+              <a href="/inventories/<%=result.id%>" class="text-decoration-none" title="<%=result.item_name%>">
+                <%=(result.item_name).truncate(36, :separator => ' ')%>
+              </a>
+            </h5>
+          </div>
+          <%# Card Body --END-- %>
+          <%# Card Footer %>
+          <div class="card-footer">
+            <div class="card-text">
+              <%if result.new_inventory%>
+                $<%=(result.retail_total/1.2).round(2)%>
+              <%else%>
+                $<%=(result.retail_total).round(2)%>
+              <%end%>
+            </div>
+          </div>
+        </div>
+        <%# Card --END-- %>
+      </div>
+    <%end%>
+  </div>
+  <%# Row --END-- %>
+</div>
+<%# Container --END--%>

@@ -20,7 +20,9 @@
           <%end%>
           <div class="card-body">
             <h5 class="card-title">
-              <a href="/inventories/<%=i.id%>" class="text-decoration-none"><%=i.inventory.item_name%></a>
+              <a href="/inventories/<%=i.id%>" class="text-decoration-none" title="<%=i.inventory.item_name%>">
+                <%=(i.inventory.item_name).truncate(36, :separator => ' ')%>
+              </a>
             </h5>
           </div>
           <div class="card-footer">
@@ -39,11 +41,10 @@
     <%end%>
   </div>
   <%# Row --END-- %>
-  <div class="row">
-  <div class="col-3 mt-2"><%= paginate @inventories%></div>
-  <div class="col-3"></div>
-  <div class="col-3"></div>
-  <div class="col-3"></div>
+  <div class="row mt-4">
+  <div class="col-4"></div>
+  <div class="col-4"><%= paginate @inventories%></div>
+  <div class="col-4"></div>
   </div>
 </div>
 <%# Container --END-- %>

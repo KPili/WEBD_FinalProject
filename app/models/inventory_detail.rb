@@ -9,4 +9,7 @@ class InventoryDetail < ApplicationRecord
   validates :aroma, :flavor, :acidity, numericality: { greater_than_or_equal_to: 0 },
                                        allow_blank:  true
   validates :country_of_origin, presence: true
+
+  # Kaminari Pagination
+  paginates_per 16
 end

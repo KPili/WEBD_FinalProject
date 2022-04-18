@@ -10,4 +10,7 @@ class Inventory < ApplicationRecord
             numericality: { greater_than_or_equal_to: 0 }
   validates :stock_amount, :new_inventory, numericality: { only_integer: true }
   validates :retail_total, numericality: true, allow_blank: true
+
+  # Kaminari Pagination
+  paginates_per 16
 end

@@ -1,6 +1,10 @@
 <%# Reference: https://mdbootstrap.com/docs/standard/navigation/footer/ %>
 <%# Footer %>
-<footer class="text-center text-white fixed-bottom" style="background-color:#E8E8E8;">
+<% unless current_page?(employees_path)%>
+  <footer class="text-center text-white" style="background-color:#E8E8E8;">
+<%else%>
+  <footer class="text-center text-white fixed-bottom" style="background-color:#E8E8E8;">
+<%end%>
   <%# Grid Container %>
   <div class="container p-4 pb-0">
     <%# Footer Navigation Icons %>

@@ -31,9 +31,9 @@
               <th><%=@inventory.acidity%>/10</th>
               <th><%=@inventory.country_of_origin%></th>
               <%if !(@inventory.inventory.new_inventory)%>
-                <th>$<%= (@inventory.inventory.retail_total/1.2).round(2)%></th>
+                <th><%=number_to_currency (@inventory.inventory.retail_total/1.2), precision: 2%></th>
               <%else%>
-                <th><%=(@inventory.inventory.retail_total).round(2)%></th>
+                <th><%=number_to_currency (@inventory.inventory.retail_total), precision: 2%></th>
               <%end%>
             </tr>
             <tr class="text-center">

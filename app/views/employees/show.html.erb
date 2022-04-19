@@ -10,7 +10,7 @@
 <div class="container mb-5">
   <div class="card">
     <%if @employee.image.present?%>
-      <%= image_tag @employee.image, class:"card-img-top"%>
+      <%= image_tag @employee.image, class:"card-img-top", alt: @employee.f_name.concat(" "+@employee.l_name)%>
     <%else%>
       <img src="#" alt="no image" class="card-img-top">
     <%end%>
@@ -19,29 +19,29 @@
       <p class="card-text">
         <%case @job.job_title%>
         <%when "Manager"%>
-          <%=@employee.f_name%> is a lover of coffee, a go-getter, and a business enthusiast looking to support his hometown of Winnipeg.
-          Through self study and building friendships with coffee vendors in Winnipeg, <%=@employee.f_name%> had been able to experiment
+          <%=@employee.l_name%> is a lover of coffee, a go-getter, and a business enthusiast looking to support his hometown of Winnipeg.
+          Through self study and building friendships with coffee vendors in Winnipeg, <%=@employee.l_name%> had been able to experiment
           and developed a coffee roast that he felt best described his appreciation for coffee in a single cup.
-          Not wanting to keep this wonderous blend to himself, <%=@employee.f_name%>'s go-getter attitude lead him into kindling friendships
+          Not wanting to keep this wonderous blend to himself, <%=@employee.l_name%>'s go-getter attitude lead him into kindling friendships
           into business partnerships and started <strong>Princess Coffee Roasters&trade;</strong> with a few of his fellow coffee loving friends.
         <%when "Administrative Assistant"%>
-          <%=@employee.f_name%> has been strictly an espresso drinker since they had their first sip as a teen. Whether it be the delicate sweet caramel notes
-          or the initial perceived notion that it was a stronger cup of coffee, <%=@employee.f_name%> has never looked back. So after hearing about an
+          <%=@employee.l_name%> has been strictly an espresso drinker since they had their first sip as a teen. Whether it be the delicate sweet caramel notes
+          or the initial perceived notion that it was a stronger cup of coffee, <%=@employee.l_name%> has never looked back. So after hearing about an
           opportunity to work in a local roaster and utilizing their learned administrative skills, the opportunity was not passed.
         <%when "Barista"%>
-          <%=@employee.f_name%> has always been an artist, from sketch book to graphic design. To support these passions they've worked in various local coffee shops
+          <%=@employee.l_name%> has always been an artist, from sketch book to graphic design. To support these passions they've worked in various local coffee shops
           in Winnipeg. Through working at these shops an appreciation for the artistry and delicacy in brewing the perfect cup of coffee and making
-          the finest of milk art struck a chord deep inside them. From that point on, <%=@employee.f_name%> has incorporated their artistic ability
+          the finest of milk art struck a chord deep inside them. From that point on, <%=@employee.l_name%> has incorporated their artistic ability
           and competed in a multitude of Barista competitions across Canada. Now wanting to support the growth of coffee culture in their home town,
-          <%=@employee.f_name%> acts as lead Barista at <strong>Princess Coffee Roasters&trade;</strong> and one day hopes to pass on their skills as the company grows in staff.
+          <%=@employee.l_name%> acts as lead Barista at <strong>Princess Coffee Roasters&trade;</strong> and one day hopes to pass on their skills as the company grows in staff.
         <%when "Roaster"%>
-          <%=@employee.f_name%> has been known to be hyper-focused and never says no to a challenge. With this in mind, they were the perfect candidate to sift through and roast
+          <%=@employee.l_name%> has been known to be hyper-focused and never says no to a challenge. With this in mind, they were the perfect candidate to sift through and roast
           the coffee beans alongside Michael at <strong>Princess Coffee Roasters&trade;</strong>. Keeping to themselves most of the time, the short and sweet of it all is they
           love coffee, and never wanting to settle for less than the perfect cup.
         <%end%>
       </p>
       <p class="card-text">
-        At <strong>Princess Coffee Roasters&trade;</strong>, <%=@employee.f_name%>'s duties are defined as:<br>
+        At <strong>Princess Coffee Roasters&trade;</strong>, <%=@employee.l_name%>'s duties are defined as:<br>
         <%= @job.job_desc%>
       </p>
     </div>

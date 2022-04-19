@@ -21,7 +21,7 @@
   <div class="container">
     <div class="row">
       <div class="col text-center py-5">
-        <h1 class="display-5">
+        <h1 class="display-5 text-light">
           Welcome to Princess Coffee Roasters
         </h1>
         <p class="lead text-white">
@@ -68,7 +68,7 @@
             <%# Card Footer %>
             <div class="card-footer">
               <div class="card-text text-center">
-                $<%=inv.retail_total.round(2)%>
+                <%=number_to_currency inv.retail_total, precision: 2%>
               </div>
             </div>
           </div>

@@ -32,9 +32,9 @@
           <div class="card-footer text-center">
             <p class="card-text">
               <%if !(i.new_inventory)%>
-                $<%=(i.retail_total/1.2).round(2)%><br>
+                <%=number_to_currency (i.retail_total/1.2), precision: 2%><br>
               <%else%>
-                $<%=(i.retail_total).round(2)%>
+                <%=number_to_currency (i.retail_total), precision: 2%>
               <%end%>
             </p>
           </div>

@@ -1,6 +1,5 @@
-ActiveAdmin.register Inventory do
-  permit_params :item_name, :unit_sold, :unit_price, :stock_amount, :new_inventory, :total,
-                :retail_total, :supplier_id, :image
+ActiveAdmin.register Employee do
+  permit_params :f_name, :l_name, :phone_num, :email, :job_id, :image
 
   # DSL - Domain Specific Language
   form do |f|

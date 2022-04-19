@@ -14,10 +14,14 @@
       <div class="col-sm">
         <%# Card Start %>
         <div class="card">
-          <img src="#" alt="image" class="card-img-top">
+          <%if employee.image.present?%>
+            <%= image_tag employee.image, class:"card-img-top", alt: employee.f_name.concat(" "+employee.l_name), :size => "450x450"%>
+          <%else%>
+            <img src="#" alt="no image" class="card-img-top">
+          <%end%>
           <%# Card Body Start %>
           <div class="card-body">
-            <h5 class="card-title"><%="#{employee.f_name} #{employee.l_name}"%></h5>
+            <h5 class="card-title"><%="#{employee.f_name}"%></h5>
             <p class="card-text">
               <small class="text-muted"><%=employee.job.job_title%></small>
             </p>
@@ -25,7 +29,7 @@
           <%# Card Body --END-- %>
           <%# Card Footer Start %>
           <div class="card-footer">
-            <%= link_to "Learn More",employee, class:"btn btn-outline-primary text-decoration-none"%>
+            <%= link_to "Learn More",employee, class:"btn btn-outline-primary btn-sm text-decoration-none"%>
           </div>
         </div>
         <%# Card --END-- %>
@@ -33,3 +37,6 @@
     <%end%>
   </div>
 </div>
+<%5.times do%>
+<div class="container mb-5 text-light">text</div>
+<%end%>

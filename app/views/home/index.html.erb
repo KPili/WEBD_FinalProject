@@ -21,7 +21,7 @@
   <div class="container">
     <div class="row">
       <div class="col text-center py-5">
-        <h1 class="display-5">
+        <h1 class="display-5 text-light">
           Welcome to Princess Coffee Roasters
         </h1>
         <p class="lead text-white">
@@ -51,7 +51,11 @@
       <%@inventory_details.each do |inv|%>
         <div class="col-3">
           <div class="card my-2">
-            <img src="#" alt="image">
+            <%if inv.image.present?%>
+              <%= image_tag inv.image, class:"card-img-top", alt:"On Sale Item"%>
+            <%else%>
+              <img src="#" alt="No Image" class="card-img-top">
+            <%end%>
             <div class="card-body">
               <h5 class="card-title">
                 <a href="/inventories/<%=inv.id%>" class="text-decoration-none" title="<%=inv.item_name%>">
@@ -63,8 +67,8 @@
             <%# Card Body --END-- %>
             <%# Card Footer %>
             <div class="card-footer">
-              <div class="card-text">
-                $<%=inv.retail_total.round(2)%>
+              <div class="card-text text-center">
+                <%=number_to_currency inv.retail_total, precision: 2%>
               </div>
             </div>
           </div>

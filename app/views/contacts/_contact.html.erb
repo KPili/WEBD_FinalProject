@@ -1,0 +1,24 @@
+    <div class="col-4">
+      <%# Location %>
+      <div class="col-sm pb-4">
+        <h1>Location</h1>
+        <p class="lead"><%=contact.street_address%></p>
+        <p class="lead"><%=contact.city%>, <%=contact.postal_code%></p>
+      </div>
+      <%# Hours of Operation %>
+      <div class="col-sm pb-4">
+        <h1>Hours</h1>
+        <p class="lead"><%=contact.b_start%> - <%=contact.b_end%></p>
+        <p class="lead"><%=contact.s_time%> - <%=contact.e_time%></p>
+      </div>
+      <%# Phone %>
+      <div class="col-sm pb-4">
+        <h1>Phone Number</h1>
+        <p class="lead"><%=contact.phone%></p>
+      </div>
+      <%#  Email %>
+      <div class="col-sm mb-5 pb-4">
+        <h1>Email</h1>
+        <p class="lead"><%=contact.email%></p>
+      </div>
+    </div>

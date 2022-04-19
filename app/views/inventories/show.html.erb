@@ -36,9 +36,17 @@
                 <th><%=(@inventory.inventory.retail_total).round(2)%></th>
               <%end%>
             </tr>
+            <tr class="text-center">
+              <td colspan="5">
+                <%= link_to "Back to products...", inventories_path, class:"text-decoration-none"%>
+              </td>
+            </tr>
           </tbody>
         </table>
       </div>
     </div>
   </div>
 </div>
+<%5.times do%>
+<div class="container mb-5 text-light">text</div>
+<%end%>

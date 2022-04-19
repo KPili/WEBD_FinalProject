@@ -26,9 +26,7 @@
         <%end%>
           <div class="card-body">
             <h5 class="card-title">
-              <a href="/inventories/<%=i.id%>" class="text-decoration-none" title="<%=i.item_name%>">
-                <%=(i.item_name).truncate(36, :separator => ' ')%>
-              </a>
+              <%= link_to (i.item_name).truncate(36, :separator => ' '), "/inventories/"+i.id.to_s, class:"text-decoration-none", title: i.item_name%>
             </h5>
           </div>
           <div class="card-footer text-center">

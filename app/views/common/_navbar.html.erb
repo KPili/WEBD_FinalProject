@@ -1,49 +1,65 @@
 <%# Navbar %>
-<nav class="navbar navbar-expand-sm navbar-dark bg-dark p-1">
+<nav class="navbar navbar-expand-sm navbar-dark bg-dark p-2">
   <div class="container">
     <%# PCR Brand %>
-    <div class="navbar-brand">☕Princess Coffee Roasters </div><%# PCR Brand --END--%>
+    <%= link_to '☕Princess Coffee Roasters', root_path, class:"navbar-brand text-decoration-none"%>
     <%# Hamburger Drop Down %>
-    <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#pcrnavbarCollapse" aria-controls="pcrnavbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id=navbarCollapse>
+    <div class="collapse navbar-collapse" id="pcrnavbarCollapse">
     <%# Hamburger Drop Down --END-- %>
       <%# Navbar contents %>
       <ul class="navbar-nav">
-        <li class="nav-item px-2">
-          <%= link_to "Home", root_path, class:"nav-link text-decoration-none"%>
+        <li class="nav-item px-1">
+          <% if current_page?(root_path)%>
+            <%= link_to "Home", root_path, class:"nav-link text-decoration-none active"%>
+          <%else%>
+            <%= link_to "Home", root_path, class:"nav-link text-decoration-none"%>
+          <%end%>
         </li>
-        <li class="nav-item px-2">
-          <%= link_to "Products", inventories_path, class:"nav-link text-decoration-none"%>
+        <li class="nav-item px-1">
+          <% if current_page?(inventories_path)%>
+            <%= link_to "Products", inventories_path, class:"nav-link text-decoration-none active"%>
+          <%else%>
+            <%= link_to "Products", inventories_path, class:"nav-link text-decoration-none"%>
+          <%end%>
         </li>
-        <li class="nav-item px-2">
-          <%= link_to "Employees", employees_path, class:"nav-link text-decoration-none"%>
+        <li class="nav-item px-1">
+          <% if current_page?(employees_path)%>
+            <%= link_to "Employees", employees_path, class:"nav-link text-decoration-none active"%>
+          <%else%>
+            <%= link_to "Employees", employees_path, class:"nav-link text-decoration-none"%>
+          <%end%>
         </li>
-        <li class="nav-item px-2">
-          <%= link_to "About Us", about_path, class:"nav-link text-decoration-none"%>
+        <li class="nav-item px-1">
+          <% if current_page?(about_path)%>
+            <%= link_to "About Us", about_path, class:"nav-link text-decoration-none active"%>
+          <%else%>
+            <%= link_to "About Us", about_path, class:"nav-link text-decoration-none"%>
+          <%end%>
         </li>
-        <li>
-          <%= link_to "Contact Us", contact_path, class:"nav-link text-decoration-none"%>
+        <li class="nav-item px-1">
+          <% if current_page?(contact_path)%>
+            <%= link_to "Contact Us", contact_path, class:"nav-link text-decoration-none active"%>
+          <%else%>
+            <%= link_to "Contact Us", contact_path, class:"nav-link text-decoration-none"%>
+          <%end%>
         </li>
       </ul>
       <%# Search Form %>
       <%= form_with(url: search_inventories_path, method: :get, local: true) do%>
-        <div class="input-group">
-          <%# Search Field %>
-          <div class="col-10">
-            <%= text_field_tag(:keywords, nil, class: "form-control", placeholder: 'Brand Search...')%>
-          </div>
-          <%# Submit %>
-          <div class="col-2">
-            <button class="btn btn-outline-dark" type="submit"><%=icon("fa-solid", "magnifying-glass")%></button>
-          </div>
+      <div class="input-group">
+        <%= text_field_tag(:keywords, nil, class: "form-control", placeholder: 'Brand Search...')%>
+        <div class="input-group-append">
+          <button class="btn" type="submit"><%=icon("fa-solid", "magnifying-glass")%></button>
         </div>
+      </div>
       <%end%>
+      <%# Search Form --END-- %>
     </div>
     <%# Container Collapse --END-- %>
   </div>
   <%# Container --END-- %>
 </nav>
 <%# Navbar --END--%>
-

@@ -2,6 +2,8 @@ class Inventory < ApplicationRecord
   # Association
   has_many :inventory_details
   belongs_to :supplier
+  # Active Storage
+  has_one_attached :image
 
   # Validation
   validates :item_name, :unit_sold, :unit_price, :stock_amount, :total,

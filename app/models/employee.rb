@@ -2,6 +2,8 @@ class Employee < ApplicationRecord
   # Association
   has_many :orders
   belongs_to :job
+  # Active Storage
+  has_one_attached :image
 
   # Validation
   validates :f_name, :l_name, :phone_num, :email, presence: true

@@ -1,14 +1,44 @@
-<h2><%= @inventory.inventory.item_name%></h1>
-<div>
-  <%if @inventory.inventory.new_inventory%>
-    <li>Price: <%= (@inventory.inventory.retail_total/1.2).round(2)%></li>
-    <li>Product is on sale!</li>
-  <%else%>
-    <li>Price: <%= (@inventory.inventory.retail_total).round(2)%></li>
-  <%end%>
-  <h3> Coffee Quality Institute's Reviews</h3>
-  <li>Aroma: <%=@inventory.aroma%>/10</li>
-  <li>Flavor: <%=@inventory.flavor%>/10</li>
-  <li>Acidity: <%=@inventory.acidity%>/10</li>
-  <li>Country of Origin (COG): <%= @inventory.country_of_origin%></li>
+<%# Header %>
+<div class="container">
+  <div class="row">
+    <div class="col text-center py-5">
+      <h1 class="display-3"><%=@inventory.inventory.item_name%></h1>
+    </div>
+  </div>
+</div>
+<%# Content %>
+<div class="container">
+  <div class="card">
+    <div class="card-body">
+      <div class="card-text">
+        <h5 class="card-title text-center">
+        Coffee Quality Institute Review
+        </h5>
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th scope="col">Aroma</th>
+              <th scope="col">Flavor</th>
+              <th scope="col">Acidity</th>
+              <th scope="col">Country of Origin</th>
+              <th scope="col">Price</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row"><%=@inventory.aroma%>/10</th>
+              <th><%=@inventory.flavor%>/10</th>
+              <th><%=@inventory.acidity%>/10</th>
+              <th><%=@inventory.country_of_origin%></th>
+              <%if !(@inventory.inventory.new_inventory)%>
+                <th>$<%= (@inventory.inventory.retail_total/1.2).round(2)%></th>
+              <%else%>
+                <th><%=(@inventory.inventory.retail_total).round(2)%></th>
+              <%end%>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
 </div>

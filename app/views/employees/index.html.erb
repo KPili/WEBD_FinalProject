@@ -14,7 +14,11 @@
       <div class="col-sm">
         <%# Card Start %>
         <div class="card">
-          <img src="#" alt="image" class="card-img-top">
+          <%if employee.image.present?%>
+            <%= image_tag employee.image, class:"card-img-top"%>
+          <%else%>
+            <img src="#" alt="no image" class="card-img-top">
+          <%end%>
           <%# Card Body Start %>
           <div class="card-body">
             <h5 class="card-title"><%="#{employee.f_name} #{employee.l_name}"%></h5>

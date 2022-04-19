@@ -7,9 +7,13 @@
   </div>
 </div>
 <%# Contents %>
-<div class="container">
+<div class="container mb-5">
   <div class="card">
-    <img src="#" alt="image" class="card-img-top">
+    <%if @employee.image.present?%>
+      <%= image_tag @employee.image, class:"card-img-top"%>
+    <%else%>
+      <img src="#" alt="no image" class="card-img-top">
+    <%end%>
     <div class="card-body">
       <h5 class="card-title"><%=@job.job_title%></h5>
       <p class="card-text">
@@ -51,3 +55,6 @@
   <%# Card --END-- %>
 </div>
 <%# Container --END-- %>
+<%5.times do%>
+<div class="container mb-5 text-light">text</div>
+<%end%>

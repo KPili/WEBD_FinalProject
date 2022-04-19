@@ -12,25 +12,31 @@
     <%@inventories.each do |i|%>
       <div class="col-3">
         <div class="card my-2">
-        <%# IF item is on sale image will have text on it %>
-          <%if !(i.inventory.new_inventory)%>
-            <img src="#" alt="On Sale" class="card-img-top">
+        <%if i.image.present?%>
+          <%if !(i.new_inventory)%>
+            <%= image_tag i.image, class:"card-img-top", alt:"On Sale Item" %>
+            <div class="card-img-overlay">
+              <h5 class="card-title">On Sale</h5>
+            </div>
           <%else%>
             <img src="#" alt="Regular" class="card-img-top">
           <%end%>
+        <%else%>
+          <img src="#" alt="No Image" class="card-img-top">
+        <%end%>
           <div class="card-body">
             <h5 class="card-title">
-              <a href="/inventories/<%=i.id%>" class="text-decoration-none" title="<%=i.inventory.item_name%>">
-                <%=(i.inventory.item_name).truncate(36, :separator => ' ')%>
+              <a href="/inventories/<%=i.id%>" class="text-decoration-none" title="<%=i.item_name%>">
+                <%=(i.item_name).truncate(36, :separator => ' ')%>
               </a>
             </h5>
           </div>
-          <div class="card-footer">
+          <div class="card-footer text-center">
             <p class="card-text">
-              <%if !(i.inventory.new_inventory)%>
-                $<%=(i.inventory.retail_total/1.2).round(2)%><br>
+              <%if !(i.new_inventory)%>
+                $<%=(i.retail_total/1.2).round(2)%><br>
               <%else%>
-                $<%=(i.inventory.retail_total).round(2)%>
+                $<%=(i.retail_total).round(2)%>
               <%end%>
             </p>
           </div>

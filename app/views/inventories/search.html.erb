@@ -13,11 +13,18 @@
     <% @inventories_results.each do |result|%>
       <div class="col-3">
         <div class="card my-2">
+        <%if result.image.present?%>
           <%if !(result.new_inventory)%>
-            <img src="#" alt="On Sale" class="card-img-top">
+            <%= image_tag i.image, class:"card-img-top", alt:"On Sale Item" %>
+            <div class="card-img-overlay">
+              <h5 class="card-title">On Sale</h5>
+            </div>
           <%else%>
             <img src="#" alt="Regular" class="card-img-top">
           <%end%>
+        <%else%>
+          <img src="#" alt="No Image" class="card-img-top">
+        <%end%>
           <div class="card-body">
             <h5 class="card-title">
               <a href="/inventories/<%=result.id%>" class="text-decoration-none" title="<%=result.item_name%>">

@@ -1,0 +1,42 @@
+<div class="col-3">
+  <div class="card my-2">
+    <%if inventory.image.present?%>
+      <%if !(inventory.new_inventory)%>
+        <%= image_tag inventory.image, class:"card-img-top", alt:"On Sale Item" %>
+        <%# Card Image Overlay %>
+        <div class="card-img-overlay">
+          <h5 class="card-title">
+            On Sale
+          </h5>
+        </div>
+        <%# Card Image Overlay --END-- %>
+      <%else%>
+        <%= image_tag inventory.image, class:"card-img-top", alt:"Coffee Item" %>
+      <%end%>
+    <%else%>
+      <img src="#" alt="No Available Image" class="card-img-top">
+    <%end%>
+    <%# End of Image %>
+    <%# Card Body %>
+    <div class="card-body">
+      <h5 class="card-title">
+        <%= link_to inventory.item_name.truncate(36, :separator => ' '), "/inventories/" + inventory.id.to_s, class:"text-decoration-none", title: inventory.item_name%>
+      </h5>
+    </div>
+    <%# Card Body --END-- %>
+    <%# Card Footer %>
+    <div class="card-footer text-center">
+      <p class="card-text">
+        <%if !(inventory.new_inventory)%>
+          <%= number_to_currency (inventory.retail_total/1.2), precision: 2%>
+        <%else%>
+          <%= number_to_currency inventory.retail_total, precision: 2%>
+        <%end%>
+      </p>
+      <%# Card Text --END-- %>
+    </div>
+    <%# Card Footer --END-- %>
+  </div>
+  <%# Card --END-- %>
+</div>
+<%# Col-sm --END-- %>

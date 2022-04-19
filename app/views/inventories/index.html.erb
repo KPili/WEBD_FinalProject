@@ -9,40 +9,7 @@
 <%# Content %>
 <div class="container">
   <div class="row">
-    <%@inventories.each do |i|%>
-      <div class="col-3">
-        <div class="card my-2">
-        <%if i.image.present?%>
-          <%if !(i.new_inventory)%>
-            <%= image_tag i.image, class:"card-img-top", alt:"On Sale Item" %>
-            <div class="card-img-overlay">
-              <h5 class="card-title">On Sale</h5>
-            </div>
-          <%else%>
-            <img src="#" alt="Regular" class="card-img-top">
-          <%end%>
-        <%else%>
-          <img src="#" alt="No Image" class="card-img-top">
-        <%end%>
-          <div class="card-body">
-            <h5 class="card-title">
-              <%= link_to (i.item_name).truncate(36, :separator => ' '), "/inventories/"+i.id.to_s, class:"text-decoration-none", title: i.item_name%>
-            </h5>
-          </div>
-          <div class="card-footer text-center">
-            <p class="card-text">
-              <%if !(i.new_inventory)%>
-                <%=number_to_currency (i.retail_total/1.2), precision: 2%><br>
-              <%else%>
-                <%=number_to_currency (i.retail_total), precision: 2%>
-              <%end%>
-            </p>
-          </div>
-        </div>
-        <%# Card --END-- %>
-      </div>
-      <%# Col-sm --END-- %>
-    <%end%>
+  <%= render @inventories%>
   </div>
   <%# Row --END-- %>
   <div class="row mt-4">

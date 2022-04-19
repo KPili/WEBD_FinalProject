@@ -6,7 +6,7 @@ class Inventory < ApplicationRecord
   has_one_attached :image
 
   # Validation
-  validates :item_name, :unit_sold, :unit_price, :stock_amount, :total,
+  validates :item_name, :unit_sold, :unit_price, :stock_amount, :total, :image,
             presence: true
   validates :unit_sold, :unit_price, :stock_amount, :total,
             numericality: { greater_than_or_equal_to: 0 }

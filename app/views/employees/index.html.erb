@@ -15,7 +15,7 @@
         <%# Card Start %>
         <div class="card">
           <%if employee.image.present?%>
-            <%= image_tag employee.image, class:"card-img-top"%>
+            <%= image_tag employee.image, class:"card-img-top", alt: employee.f_name.concat(" "+employee.l_name)%>
           <%else%>
             <img src="#" alt="no image" class="card-img-top">
           <%end%>

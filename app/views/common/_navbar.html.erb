@@ -49,22 +49,10 @@
       </ul>
       <%# Search Form %>
       <%= form_with(url: search_inventories_path, method: :get, local: true) do%>
-<<<<<<< HEAD
-        <div class="input-group">
-          <%# Search Field %>
-          <div class="col-10">
-            <%= text_field_tag(:keywords, nil, class: "form-control", placeholder: 'Brand Search...')%>
-          </div>
-          <%# Submit %>
-          <div class="col-2">
-            <button class="btn btn-outline-dark" type="submit">Search</button>
-          </div>
-=======
       <div class="input-group">
         <%= text_field_tag(:keywords, nil, class: "form-control", placeholder: 'Brand Search...')%>
         <div class="input-group-append">
           <button class="btn" type="submit"><%=icon("fa-solid", "magnifying-glass")%></button>
->>>>>>> pcr_feature_activeStorageImageUpload
         </div>
       </div>
       <%end%>

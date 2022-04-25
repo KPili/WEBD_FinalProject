@@ -46,6 +46,12 @@
             <%= link_to "Contact Us", contact_path, class:"nav-link text-decoration-none"%>
           <%end%>
         </li>
+        <li class="nav-item px-1">
+          <%= link_to "Cart", root_path, class:"nav-link text-decoration-none" %>
+        </li>
+        <li>
+          <span class="badge badge-light"><%=cart.size%></span>
+        </li>
       </ul>
       <%# Search Form %>
       <%= form_with(url: search_inventories_path, method: :get, local: true) do%>

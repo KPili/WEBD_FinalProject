@@ -6,7 +6,7 @@ class CartController < ApplicationController
 
     unless session[:shopping_cart].include?(id)
       session[:shopping_cart] << id # Append the id to the shopping_cart session
-      redirect_to root_path # route the user back to the home page
+      redirect_to inventories_path # route the user back to the home page
     end
   end
 
@@ -15,6 +15,6 @@ class CartController < ApplicationController
   def destroy
     id = params[:id].to_i
     session[:shopping_cart].delete(id)
-    redirect_to root_path
+    redirect_to inventories_path
   end
 end

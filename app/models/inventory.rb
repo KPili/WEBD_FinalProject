@@ -1,6 +1,6 @@
 class Inventory < ApplicationRecord
   # Association
-  has_many :inventory_details
+  has_many :inventory_details, dependent: nil
   belongs_to :supplier
   # Active Storage
   has_one_attached :image

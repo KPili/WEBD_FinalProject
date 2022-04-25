@@ -1,6 +1,6 @@
 class Province < ApplicationRecord
   # Association
-  has_many :orders
+  has_many :orders, dependent: nil
   belongs_to :tax_rate
 
   # Validation

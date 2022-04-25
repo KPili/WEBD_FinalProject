@@ -1,6 +1,6 @@
 class Order < ApplicationRecord
   # Association
-  has_many :order_histories
+  has_many :order_histories, dependent: nil
   belongs_to :employee
   belongs_to :grind_type
   belongs_to :province

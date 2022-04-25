@@ -1,6 +1,6 @@
 class TaxRate < ApplicationRecord
   # Association
-  has_many :provinces
+  has_many :provinces, dependent: nil
 
   # Validation
   validates :applicable, numericality: true, presence: true

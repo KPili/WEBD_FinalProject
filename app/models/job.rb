@@ -1,7 +1,7 @@
 class Job < ApplicationRecord
   # Association
-  has_many :employees
-  has_many :suppliers
+  has_many :employees, dependent: nil
+  has_many :suppliers, dependent: nil
 
   # Validation
   validates :job_title, :job_desc, :start_date, presence: true

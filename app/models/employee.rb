@@ -1,6 +1,6 @@
 class Employee < ApplicationRecord
   # Association
-  has_many :orders
+  has_many :orders, dependent: nil
   belongs_to :job
   # Active Storage
   has_one_attached :image

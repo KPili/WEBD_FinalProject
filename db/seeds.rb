@@ -33,7 +33,8 @@ Species.connection.execute("UPDATE SQLITE_SEQUENCE SET SEQ=0 WHERE NAME= 'specie
 TaxRate.connection.execute("UPDATE SQLITE_SEQUENCE SET SEQ=0 WHERE NAME= 'tax_rates'")
 Supplier.connection.execute("UPDATE SQLITE_SEQUENCE SET SEQ=0 WHERE NAME= 'suppliers'")
 Inventory.connection.execute("UPDATE SQLITE_SEQUENCE SET SEQ=0 WHERE NAME= 'inventories'")
-InventoryDetail.connection.execute("UPDATE SQLITE_SEQUENCE SET SEQ=0 WHERE NAME= 'inventory_details'")
+InventoryDetail.connection.execute("UPDATE SQLITE_SEQUENCE SET SEQ=0 WHERE
+                                    NAME= 'inventory_details'")
 Employee.connection.execute("UPDATE SQLITE_SEQUENCE SET SEQ=0 WHERE NAME= 'employees'")
 Province.connection.execute("UPDATE SQLITE_SEQUENCE SET SEQ=0 WHERE NAME= 'provinces'")
 # Order.connection.execute("UPDATE SQLITE_SEQUENCE SET SEQ=0 WHERE NAME= 'orders'")
@@ -64,10 +65,21 @@ grinds = CSV.parse(grinds_data, headers: true, encoding: "utf-8")
 
 # Jobs
 coffee_shop_jobs = {
-  "Manager"                  => "A Manager accomplishes department objectives by managing staff; planning and evaluating department activities. Maintains staff by recruiting, selecting, orienting, and training employees. Ensures a safe, secure, and legal work environment. Develops personal growth opportunities.",
-  "Administrative Assistant" => "An Administrative Assistant provides office support for the businesses. They may draft various documents and types of business correspondence. Administrative assistants also often provide phone support and customer service, handle scheduling and prepare and proofread reports.",
-  "Barista"                  => "A Barista is a professional who makes and serves beverages such as coffee, tea and specialty beverages. They are responsible for taking customer orders and payments. They also clean and sanitize their work areas, seating areas and equipment/tools",
-  "Roaster"                  => "A Roaster acquires coffee beans from around the world and roasts them to obtain different taste profiles. Your job duties may include negotiating with coffee bean wholesalers or coffee farmers, roasting coffee beans, experimenting with roast levels, aroma, grind, and flavors."
+  "Manager"                  => "A Manager accomplishes department objectives by managing staff;
+  planning and evaluating department activities. Maintains staff by recruiting,
+  selecting, orienting, and training employees. Ensures a safe, secure, and legal work environment.
+  Develops personal growth opportunities.",
+  "Administrative Assistant" => "An Administrative Assistant provides office support
+  for the businesses. They may draft various documents and types of business correspondence.
+  Administrative assistants also often provide phone support and customer service, handle scheduling
+  and prepare and proofread reports.",
+  "Barista"                  => "A Barista is a professional who makes and serves beverages such as
+  coffee, tea and specialty beverages. They are responsible for taking customer orders and payments.
+  They also clean and sanitize their work areas, seating areas and equipment/tools",
+  "Roaster"                  => "A Roaster acquires coffee beans from around the world and roasts
+  them to obtain different taste profiles. Your job duties may include negotiating with coffee bean
+  wholesalers or coffee farmers, roasting coffee beans, experimenting with roast levels, aroma,
+  grind, and flavors."
 }
 
 # Propogate jobs table
@@ -234,21 +246,24 @@ end
 # Order_History
 #   - Implement AFTER Shopping Cart Functionality
 
-# DELETE BELOW AFTER - confirm business requirement 1.6
-puts "Created #{TaxRate.count} Tax Rates"
-puts "Created #{Species.count} Species"
-puts "Created #{GrindType.count} Grind Types"
-puts "Created #{Job.count} Jobs"
-puts "Created #{Supplier.count} Suppliers"
-puts "Created #{Inventory.count} Inventories"
-puts "Created #{InventoryDetail.count} Inventory Details"
-puts "Created #{Employee.count} Employees"
-puts "Created #{Province.count} Provinces"
-puts "Created #{Order.count} Orders"
-puts "Created #{OrderHistory.count} Order Histories"
-total = TaxRate.count + Species.count + GrindType.count + Job.count + Supplier.count + Inventory.count +
-        InventoryDetail.count + Employee.count + Province.count + Order.count + OrderHistory.count
-puts "Total amount of products seeded = #{total}"
+# Log seed script results
+logger = Rails.logger
+
+logger.info "Created #{TaxRate.count} Tax Rates"
+logger.info "Created #{Species.count} Species"
+logger.info "Created #{GrindType.count} Grind Types"
+logger.info "Created #{Job.count} Jobs"
+logger.info "Created #{Supplier.count} Suppliers"
+logger.info "Created #{Inventory.count} Inventories"
+logger.info "Created #{InventoryDetail.count} Inventory Details"
+logger.info "Created #{Employee.count} Employees"
+logger.info "Created #{Province.count} Provinces"
+logger.info "Created #{Order.count} Orders"
+logger.info "Created #{OrderHistory.count} Order Histories"
+total = TaxRate.count + Species.count + GrindType.count + Job.count +
+        Supplier.count + Inventory.count + InventoryDetail.count + Employee.count +
+        Province.count + Order.count + OrderHistory.count
+logger.info "Total amount of products seeded = #{total}"
 
 # Active Admin User credentials
 if Rails.env.development?

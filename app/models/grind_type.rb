@@ -1,6 +1,6 @@
 class GrindType < ApplicationRecord
   # Association
-  has_many :orders
+  has_many :orders, dependent: nil
 
   # Validation
   validates :desc, presence: true

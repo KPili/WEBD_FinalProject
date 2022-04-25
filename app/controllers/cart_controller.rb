@@ -4,10 +4,10 @@ class CartController < ApplicationController
   def create
     id = params[:id].to_i # Take the id taken for inventory item and convert to integer
 
-    return nil unless session[:shopping_cart].include?(id)
-      session[:shopping_cart] << id # Append the id to the shopping_cart session
-      redirect_to inventories_path # route the user back to the home page
-    end
+    return if session[:shopping_cart].include?(id)
+
+    session[:shopping_cart] << id # Append the id to the shopping_cart session
+    redirect_to inventories_path # route the user back to the home page
   end
 
   # Remove cart contents

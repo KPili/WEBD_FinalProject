@@ -18,7 +18,9 @@ The clients ecommerce website will be determined by the student and outlined in 
   - **Terminal Commands:**
     ```
     rails bundle update
-    rails bundle install
+    rails db:migrate
+    rails db:seed
+    ** Refer to steps in 'Pre-Seed' Section of ReadMe **
     rails db:migrate
     rails s
     ```
@@ -29,7 +31,22 @@ The clients ecommerce website will be determined by the student and outlined in 
     ```
     rails bundle install
     rails db:migrate
+    rails db:seed
+    ** Refer to steps in 'Pre-Seed' Section of ReadMe **
+    rails db:migrate
     rails s
+    ```
+- ## **Pre-Seed**
+
+  - app/models/employee.rb & app/models/inventory.rb
+    ```
+    Uncomment code under the comment of '# IMAGE PROCESSING'
+    ```
+  - app/admin/employees.rb & app/admin/inventories.rb
+
+    ```
+    Add :image in permit_params list
+    Uncomment f.input section containing image upload code
     ```
 
 ---

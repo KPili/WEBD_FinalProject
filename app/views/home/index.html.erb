@@ -67,10 +67,30 @@
             <%# Card Body --END-- %>
             <%# Card Footer %>
             <div class="card-footer">
-              <div class="card-text text-center">
-                <%=number_to_currency inv.retail_total, precision: 2%>
+              <div class="row">
+                <div class="col-6">
+                  <div class="card-text text-center">
+                    <%=number_to_currency inv.retail_total, precision: 2%>
+                  </div>
+                </div>
+                <div class="col-6">
+                  <%if cart.include?(inv)%>
+                    <%= button_to cart_path(inv), method: :delete, class: "btn btn-outline-light" do%>
+                      <%=icon("fa-solid", "minus")%>
+                    <%end%>
+                  <%else%>
+                    <%= form_with(url: cart_index_path, method: :post) do%>
+                      <%= hidden_field_tag(:id, inv.id)%>
+                      <%= button_tag type:"submit", class: "btn btn-outline-light" do%>
+                        <%=icon("fa-solid", "plus")%>
+                      <%end%>
+                    <%end%>
+                  <%end%>
+                </div>
               </div>
+              <%# Row --END-- %>
             </div>
+            <%# Card Footer --END-- %>
           </div>
         </div>
       <%end%>

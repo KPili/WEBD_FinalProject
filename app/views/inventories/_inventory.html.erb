@@ -26,14 +26,33 @@
     <%# Card Body --END-- %>
     <%# Card Footer %>
     <div class="card-footer text-center">
-      <p class="card-text">
-        <%if !(inventory.new_inventory)%>
-          <%= number_to_currency (inventory.retail_total/1.2), precision: 2%>
-        <%else%>
-          <%= number_to_currency inventory.retail_total, precision: 2%>
-        <%end%>
-      </p>
-      <%# Card Text --END-- %>
+      <div class="row">
+        <div class="col-6">
+          <p class="card-text">
+            <%if !(inventory.new_inventory)%>
+              <%= number_to_currency (inventory.retail_total/1.2), precision: 2%>
+            <%else%>
+              <%= number_to_currency inventory.retail_total, precision: 2%>
+            <%end%>
+          </p>
+          <%# Card Text --END-- %>
+        </div>
+          <div class="col-6">
+            <%if cart.include?(inventory)%>
+              <%= button_to cart_path(inventory), method: :delete, class: "btn btn-outline-light" do%>
+                <%=icon("fa-solid", "minus")%>
+              <%end%>
+            <%else%>
+              <%= form_with(url: cart_index_path, method: :post) do%>
+                <%= hidden_field_tag(:id, inventory.id)%>
+                <%= button_tag type:"submit", class: "btn btn-outline-light" do%>
+                  <%=icon("fa-solid", "plus")%>
+                <%end%>
+              <%end%>
+            <%end%>
+          </div>
+      </div>
+      <%# Row --END-- %>
     </div>
     <%# Card Footer --END-- %>
   </div>
